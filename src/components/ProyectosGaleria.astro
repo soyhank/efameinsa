@@ -20,7 +20,7 @@ import { proyectos } from '../data/proyectos';
             aria-selected={i === 0 ? 'true' : 'false'}
             data-proyecto-tab={p.slug}
             class:list={[
-              'rounded-full border px-4 py-2 text-sm font-semibold transition-colors duration-300',
+              'cursor-pointer rounded-full border px-4 py-2 text-sm font-semibold transition-colors duration-300',
               i === 0
                 ? 'border-granate-500 bg-granate-500 text-white'
                 : 'border-gris-200 bg-white text-gris-700 hover:border-granate-500 hover:text-granate-500',

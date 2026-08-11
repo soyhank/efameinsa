@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import TarjetaProducto from '../components/TarjetaProducto.astro';
 import CTABloque from '../components/CTABloque.astro';
 import HeroSlider from '../components/HeroSlider.astro';
+import InsigniaISO from '../components/InsigniaISO.astro';
 import { EMPRESA, SITE_URL } from '../data/sitio';
 import { lineas, productos, productosDe, marcasConSlug } from '../data/catalogo';
 import { sectores } from '../data/sectores';
@@ -43,8 +44,10 @@ const schema = [
   <section class="relative overflow-hidden bg-gris-800 text-white">
     <div class="contenedor grid gap-12 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
       <div>
-        <p class="aparece mb-4 inline-flex items-center gap-2 rounded-full bg-gris-700 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gris-200">
-          Fábrica propia en Lima · {EMPRESA.certificaciones.join(' · ')}
+        <p class="aparece mb-4 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full bg-gris-700 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-gris-200">
+          Fábrica propia en Lima
+          <InsigniaISO norma="ISO 9001" detalle="Gestión de la calidad" />
+          <InsigniaISO norma="ISO 14001" detalle="Gestión ambiental" />
         </p>
         <h1 class="aparece text-4xl font-bold leading-tight text-white sm:text-5xl">
           Equipamos lavanderías industriales que no pueden detenerse
@@ -271,7 +274,7 @@ const schema = [
   <section class="border-t border-gris-100 bg-gris-50 py-14">
     <div class="contenedor flex flex-wrap items-center justify-between gap-6">
       <div class="max-w-2xl">
-        <h2 class="text-2xl font-bold sm:text-3xl">Lavanderías que ya equipamos</h2>
+        <h2 class="text-2xl font-bold sm:text-3xl">Proyectos realizados</h2>
         <p class="prosa mt-3">
           INEN, EsSalud Pasco, Hospital Regional del Cusco y dos hospitales adjudicados con UNOPS operan con equipos
           instalados por Efameinsa. Véalos funcionando.

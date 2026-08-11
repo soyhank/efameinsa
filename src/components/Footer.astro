@@ -2,6 +2,7 @@
 import { EMPRESA } from '../data/sitio';
 import { lineas } from '../data/catalogo';
 import { sectores } from '../data/sectores';
+import InsigniaISO from './InsigniaISO.astro';
 
 const anio = new Date().getFullYear();
 ---
@@ -12,11 +13,12 @@ const anio = new Date().getFullYear();
       <img src="/img/marca/logo-header.png" alt={EMPRESA.nombre} width="298" height="48" class="mb-4 h-10 w-auto brightness-0 invert" loading="lazy" />
       <p class="text-sm leading-relaxed text-gris-300">{EMPRESA.descripcion}</p>
       <ul class="mt-4 flex gap-2">
-        {
-          EMPRESA.certificaciones.map((c) => (
-            <li class="rounded border border-gris-700 px-2 py-1 text-xs font-medium text-gris-300">{c}</li>
-          ))
-        }
+        <li class="rounded border border-gris-700 px-2.5 py-1.5 text-gris-300">
+          <InsigniaISO norma="ISO 9001" detalle="Gestión de la calidad" />
+        </li>
+        <li class="rounded border border-gris-700 px-2.5 py-1.5 text-gris-300">
+          <InsigniaISO norma="ISO 14001" detalle="Gestión ambiental" />
+        </li>
       </ul>
       <div class="mt-5 flex gap-4 text-sm">
         <a href={EMPRESA.redes.facebook} target="_blank" rel="noopener" class="hover:text-white">Facebook</a>
