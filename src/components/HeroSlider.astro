@@ -1,0 +1,130 @@
+---
+/**
+ * Carrusel del hero: rota las piezas gráficas de marca con crossfade y un
+ * zoom lento tipo Ken Burns. Autoplay pausado al pasar el mouse y desactivado
+ * si el usuario prefiere movimiento reducido.
+ */
+const slides = [
+  { src: '/img/hero/titan.webp', alt: 'Lavadora semi industrial LG Titan Max: máxima durabilidad y rendimiento' },
+  { src: '/img/hero/primus.webp', alt: 'Lavadoras y secadoras industriales Primus de alta eficiencia' },
+  { src: '/img/hero/calandria.webp', alt: 'Calandrias profesionales GMP: mayor productividad, menor inversión' },
+  { src: '/img/hero/sidi.webp', alt: 'Equipos profesionales de planchado SIDI Mondial' },
+];
+---
+
+<div
+  id="hero-slider"
+  class="relative mx-auto w-full max-w-lg overflow-hidden rounded-card shadow-2xl"
+  role="region"
+  aria-roledescription="carrusel"
+  aria-label="Equipos y marcas destacadas"
+>
+  <div class="relative aspect-square">
+    {
+      slides.map((s, i) => (
+        <img
+          src={s.src}
+          alt={s.alt}
+          width="900"
+          height="900"
+          loading={i === 0 ? 'eager' : 'lazy'}
+          fetchpriority={i === 0 ? 'high' : 'auto'}
+          decoding="async"
+          data-slide={i}
+          class={i === 0 ? 'activa' : ''}
+        />
+      ))
+    }
+  </div>
+  <div class="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+    {
+      slides.map((_, i) => (
+        <button type="button" data-punto={i} class={i === 0 ? 'activo' : ''} aria-label={`Ver imagen ${i + 1}`} />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  img[data-slide] {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  img[data-slide].activa {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    img[data-slide].activa {
+      animation: zoom-lento 7s ease-out forwards;
+    }
+  }
+
+  @keyframes zoom-lento {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.07);
+    }
+  }
+
+  button[data-punto] {
+    height: 0.625rem;
+    width: 0.625rem;
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 0.55);
+    cursor: pointer;
+    transition:
+      width 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  button[data-punto]:hover {
+    background: rgb(255 255 255 / 0.85);
+  }
+
+  button[data-punto].activo {
+    width: 1.5rem;
+    background: #fff;
+  }
+</style>
+
+<script>
+  const raiz = document.getElementById('hero-slider');
+  if (raiz) {
+    const imgs = [...raiz.querySelectorAll<HTMLImageElement>('[data-slide]')];
+    const puntos = [...raiz.querySelectorAll<HTMLButtonElement>('[data-punto]')];
+    const reducirMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let actual = 0;
+    let temporizador: ReturnType<typeof setInterval> | undefined;
+
+    const mostrar = (i: number) => {
+      actual = (i + imgs.length) % imgs.length;
+      imgs.forEach((img, j) => img.classList.toggle('activa', j === actual));
+      puntos.forEach((p, j) => p.classList.toggle('activo', j === actual));
+    };
+
+    const iniciar = () => {
+      if (!reducirMovimiento) temporizador = setInterval(() => mostrar(actual + 1), 5500);
+    };
+    const pausar = () => clearInterval(temporizador);
+
+    puntos.forEach((p, i) =>
+      p.addEventListener('click', () => {
+        pausar();
+        mostrar(i);
+        iniciar();
+      })
+    );
+    raiz.addEventListener('mouseenter', pausar);
+    raiz.addEventListener('mouseleave', iniciar);
+    iniciar();
+  }
+</script>

@@ -20,6 +20,7 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinas-lavadoras-para-industria-hotelera',
     nombre: 'Hotelería',
+    imagen: '/img/productos/calandria-de-planchado-g14-25-gmp/principal.webp',
     titulo: 'Equipos de lavandería para hoteles',
     title: 'Lavadoras Industriales para Hoteles | Lavandería Hotelera | Efameinsa',
     description:
@@ -55,6 +56,7 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinas-lavadoras-para-industria-hospitalaria',
     nombre: 'Salud',
+    imagen: '/img/productos/lavadora-con-barrera-sanitaria-lbs50-efamein/principal.webp',
     titulo: 'Lavandería hospitalaria y de clínicas',
     title: 'Lavadoras con Barrera Sanitaria para Hospitales y Clínicas | Efameinsa',
     description:
@@ -89,6 +91,7 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinas-lavadoras-para-industria-minera',
     nombre: 'Minería',
+    imagen: '/img/productos/lavadora-industrial-uw160-unimac/principal.webp',
     titulo: 'Lavandería para campamentos mineros',
     title: 'Equipos de Lavandería Industrial para Minería y Campamentos | Efameinsa',
     description:
@@ -123,6 +126,7 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinas-lavadoras-para-industria-textil',
     nombre: 'Textil',
+    imagen: '/img/productos/centrifuga-hidroextractora-lc100-efamein/principal.webp',
     titulo: 'Maquinaria para la industria textil',
     title: 'Lavadoras Teñidoras y Maquinaria Textil Industrial | Efameinsa',
     description:
@@ -158,6 +162,7 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinas-lavadoras-para-agroindustria',
     nombre: 'Agroindustria',
+    imagen: '/img/productos/secadora-industrial-ad120i-adc/principal.webp',
     titulo: 'Lavandería para agroindustria y planta alimentaria',
     title: 'Equipos de Lavandería para Agroindustria y Plantas de Alimentos | Efameinsa',
     description:
@@ -192,6 +197,7 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinas-lavadoras-para-industria-comercial',
     nombre: 'Lavandería comercial',
+    imagen: '/img/productos/lavadora-semi-industrial-lg-titan-max/principal.webp',
     titulo: 'Equipos para negocios de lavandería',
     title: 'Lavadoras Comerciales para Negocio de Lavandería | Efameinsa',
     description:
@@ -228,6 +234,7 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinaria-para-lavanderia-autoservicio',
     nombre: 'Autoservicio',
+    imagen: '/img/productos/lavadora-comercial-giant-c-a-moneda-lg/principal.webp',
     titulo: 'Lavandería de autoservicio',
     title: 'Máquinas para Lavandería de Autoservicio a Moneda | Efameinsa',
     description:
@@ -257,6 +264,7 @@ export const sectores: Sector[] = [
   {
     slug: 'sistema-wet-cleaning-aquatouch-girbau',
     nombre: 'Wet Cleaning',
+    imagen: '/img/productos/lavadora-hs6040-girbau/principal.webp',
     titulo: 'Sistema Wet Cleaning',
     title: 'Sistema Wet Cleaning: Lavado en Húmedo sin Solventes | Efameinsa',
     description:

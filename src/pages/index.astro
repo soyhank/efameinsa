@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import TarjetaProducto from '../components/TarjetaProducto.astro';
 import CTABloque from '../components/CTABloque.astro';
+import HeroSlider from '../components/HeroSlider.astro';
 import { EMPRESA, SITE_URL } from '../data/sitio';
 import { lineas, productos, productosDe, marcasConSlug } from '../data/catalogo';
 import { sectores } from '../data/sectores';
@@ -42,17 +43,17 @@ const schema = [
   <section class="relative overflow-hidden bg-gris-800 text-white">
     <div class="contenedor grid gap-12 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
       <div>
-        <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-gris-700 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gris-200">
+        <p class="aparece mb-4 inline-flex items-center gap-2 rounded-full bg-gris-700 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gris-200">
           Fábrica propia en Lima · {EMPRESA.certificaciones.join(' · ')}
         </p>
-        <h1 class="text-4xl font-bold leading-tight text-white sm:text-5xl">
+        <h1 class="aparece text-4xl font-bold leading-tight text-white sm:text-5xl">
           Equipamos lavanderías industriales que no pueden detenerse
         </h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-gris-100">
+        <p class="aparece-2 mt-6 max-w-xl text-lg leading-relaxed text-gris-100">
           {EMPRESA.anios} años fabricando y distribuyendo lavadoras, secadoras y equipos de planchado para hoteles,
           clínicas, campamentos mineros, plantas textiles y agroindustria en todo el Perú.
         </p>
-        <div class="mt-8 flex flex-wrap gap-3">
+        <div class="aparece-2 mt-8 flex flex-wrap gap-3">
           <a href="/cotizar" class="rounded-lg bg-granate-500 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-granate-600">
             Solicitar cotización
           </a>
@@ -79,20 +80,8 @@ const schema = [
         </dl>
       </div>
 
-      <div class="hidden lg:block">
-        {
-          vitrina[0]?.imagenLocal && (
-            <img
-              src={vitrina[0].imagenLocal}
-              alt={vitrina[0].nombre}
-              width="700"
-              height="646"
-              fetchpriority="high"
-              decoding="async"
-              class="mx-auto w-full max-w-lg rounded-card bg-white/95 object-contain p-8"
-            />
-          )
-        }
+      <div class="aparece-3 hidden lg:block">
+        <HeroSlider />
       </div>
     </div>
   </section>
@@ -137,17 +126,37 @@ const schema = [
     <p class="prosa mt-3 max-w-2xl">
       La configuración correcta no depende del modelo de moda, sino del tipo de prenda y de los kilos que mueve al día.
     </p>
-    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {
         sectores.map((s) => (
           <li>
             <a
               href={`/${s.slug}`}
-              class="flex h-full flex-col rounded-card border border-gris-100 p-5 transition-colors hover:border-granate-500 hover:bg-gris-50"
+              class="group flex h-full flex-col overflow-hidden rounded-card border border-gris-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-granate-500 hover:shadow-xl"
             >
-              <h3 class="text-base font-semibold text-gris-800">{s.nombre}</h3>
-              <p class="mt-2 line-clamp-3 text-sm text-gris-600">{s.entradilla}</p>
-              <span class="mt-auto pt-4 text-sm font-semibold text-granate-500">Ver soluciones →</span>
+              {s.imagen && (
+                <div class="overflow-hidden border-b border-gris-100 bg-gris-50">
+                  <img
+                    src={s.imagen}
+                    alt={`Equipos para ${s.nombre.toLowerCase()}`}
+                    width="400"
+                    height="300"
+                    loading="lazy"
+                    decoding="async"
+                    class="mx-auto aspect-[4/3] w-full object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-110"
+                  />
+                </div>
+              )}
+              <div class="flex flex-1 flex-col p-5">
+                <h3 class="text-base font-semibold text-gris-800 transition-colors duration-300 group-hover:text-granate-500">
+                  {s.nombre}
+                </h3>
+                <p class="mt-2 line-clamp-3 text-sm text-gris-600">{s.entradilla}</p>
+                <span class="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold text-granate-500">
+                  Ver soluciones
+                  <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </span>
+              </div>
             </a>
           </li>
         ))
