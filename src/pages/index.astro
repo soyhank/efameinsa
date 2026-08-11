@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import TarjetaProducto from '../components/TarjetaProducto.astro';
 import CTABloque from '../components/CTABloque.astro';
 import HeroSlider from '../components/HeroSlider.astro';
+import ProyectosGaleria from '../components/ProyectosGaleria.astro';
 import { EMPRESA, SITE_URL } from '../data/sitio';
 import { lineas, productos, productosDe, marcasConSlug } from '../data/catalogo';
 import { sectores } from '../data/sectores';
@@ -266,6 +267,8 @@ const schema = [
       </a>
     </div>
   </section>
+
+  <ProyectosGaleria />
 
   <CTABloque />
 </Base>

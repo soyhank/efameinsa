@@ -1,0 +1,128 @@
+---
+/**
+ * Galería de proyectos ejecutados. Sustituye el combobox del sitio anterior por
+ * pestañas visibles: cada proyecto muestra su descripción y una cuadrícula de
+ * fotos con una imagen protagonista.
+ */
+import { proyectos } from '../data/proyectos';
+---
+
+<section id="proyectos" class="border-t border-gris-100 bg-gris-50 py-16">
+  <div class="contenedor">
+    <h2 class="text-3xl font-bold">Proyectos que ya están lavando</h2>
+    <p class="prosa mt-3 max-w-2xl">
+      Hospitales e instituciones públicas de todo el Perú operan sus lavanderías con equipos suministrados e instalados
+      por Efameinsa, varios de ellos bajo estándares de contratación internacional (UNOPS).
+    </p>
+
+    <div class="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Proyectos ejecutados">
+      {
+        proyectos.map((p, i) => (
+          <button
+            type="button"
+            role="tab"
+            id={`tab-${p.slug}`}
+            aria-controls={`panel-${p.slug}`}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            data-proyecto-tab={p.slug}
+            class:list={[
+              'rounded-full border px-4 py-2 text-sm font-semibold transition-colors duration-300',
+              i === 0
+                ? 'border-granate-500 bg-granate-500 text-white'
+                : 'border-gris-200 bg-white text-gris-700 hover:border-granate-500 hover:text-granate-500',
+            ]}
+          >
+            {p.nombre.includes('INEN') ? 'INEN' : p.nombre.replace(/^(Hospital|Red Asistencial)\s*/, '')}
+          </button>
+        ))
+      }
+    </div>
+
+    {
+      proyectos.map((p, i) => (
+        <div
+          role="tabpanel"
+          id={`panel-${p.slug}`}
+          aria-labelledby={`tab-${p.slug}`}
+          data-proyecto-panel={p.slug}
+          class:list={['panel-proyecto mt-8 grid gap-8 lg:grid-cols-5 lg:items-start', i === 0 ? '' : 'hidden']}
+        >
+          <div class="lg:col-span-2">
+            <h3 class="text-xl font-bold text-gris-800">{p.nombre}</h3>
+            <p class="mt-1 text-sm font-semibold uppercase tracking-wide text-granate-500">{p.lugar}</p>
+            <p class="prosa mt-4">{p.descripcion}</p>
+            <a
+              href="/maquinas-lavadoras-para-industria-hospitalaria"
+              class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-granate-500 hover:underline"
+            >
+              Ver soluciones para el sector salud
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="grid grid-cols-2 gap-3 lg:col-span-3">
+            {p.imagenes.map((img, j) => (
+              <figure
+                class:list={[
+                  'group overflow-hidden rounded-card border border-gris-100 bg-white',
+                  j === 0 ? 'col-span-2 sm:col-span-1 sm:row-span-2' : '',
+                ]}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  width="1000"
+                  height="750"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+              </figure>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .panel-proyecto:not(.hidden) {
+      animation: panel-aparecer 0.45s ease-out both;
+    }
+
+    @keyframes panel-aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+</style>
+
+<script>
+  const seccion = document.getElementById('proyectos');
+  if (seccion) {
+    const tabs = [...seccion.querySelectorAll<HTMLButtonElement>('[data-proyecto-tab]')];
+    const paneles = [...seccion.querySelectorAll<HTMLElement>('[data-proyecto-panel]')];
+    const activarClases = ['border-granate-500', 'bg-granate-500', 'text-white'];
+    const inactivarClases = ['border-gris-200', 'bg-white', 'text-gris-700', 'hover:border-granate-500', 'hover:text-granate-500'];
+
+    tabs.forEach((tab) =>
+      tab.addEventListener('click', () => {
+        const slug = tab.dataset.proyectoTab;
+        tabs.forEach((t) => {
+          const activo = t === tab;
+          t.setAttribute('aria-selected', String(activo));
+          t.classList.remove(...(activo ? inactivarClases : activarClases));
+          t.classList.add(...(activo ? activarClases : inactivarClases));
+        });
+        paneles.forEach((p) => p.classList.toggle('hidden', p.dataset.proyectoPanel !== slug));
+      })
+    );
+  }
+</script>
