@@ -132,6 +132,15 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
       </li>
       <li>
         <a
+          href="/proyectos"
+          class:list={[
+            'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
+            activa('/proyectos') ? 'text-granate-500' : 'text-gris-800 hover:text-granate-500',
+          ]}>Proyectos</a
+        >
+      </li>
+      <li>
+        <a
           href="/blog"
           class:list={[
             'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
@@ -197,6 +206,7 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
         </ul>
       </details>
       <a href="/servicios" class="block border-b border-gris-100 py-3 font-medium text-gris-800">Servicios</a>
+      <a href="/proyectos" class="block border-b border-gris-100 py-3 font-medium text-gris-800">Proyectos</a>
       <a href="/marcas" class="block border-b border-gris-100 py-3 font-medium text-gris-800">Marcas</a>
       <a href="/blog" class="block border-b border-gris-100 py-3 font-medium text-gris-800">Recursos</a>
       <a href="/nosotros" class="block border-b border-gris-100 py-3 font-medium text-gris-800">Nosotros</a>

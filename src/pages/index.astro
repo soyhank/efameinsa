@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import TarjetaProducto from '../components/TarjetaProducto.astro';
 import CTABloque from '../components/CTABloque.astro';
 import HeroSlider from '../components/HeroSlider.astro';
-import ProyectosGaleria from '../components/ProyectosGaleria.astro';
 import { EMPRESA, SITE_URL } from '../data/sitio';
 import { lineas, productos, productosDe, marcasConSlug } from '../data/catalogo';
 import { sectores } from '../data/sectores';
@@ -268,7 +267,24 @@ const schema = [
     </div>
   </section>
 
-  <ProyectosGaleria />
+  <!-- Puente a la página de proyectos: prueba social sin duplicar la galería completa -->
+  <section class="border-t border-gris-100 bg-gris-50 py-14">
+    <div class="contenedor flex flex-wrap items-center justify-between gap-6">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl font-bold sm:text-3xl">Lavanderías que ya equipamos</h2>
+        <p class="prosa mt-3">
+          INEN, EsSalud Pasco, Hospital Regional del Cusco y dos hospitales adjudicados con UNOPS operan con equipos
+          instalados por Efameinsa. Véalos funcionando.
+        </p>
+      </div>
+      <a
+        href="/proyectos"
+        class="rounded-lg bg-granate-500 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-granate-600"
+      >
+        Ver proyectos ejecutados
+      </a>
+    </div>
+  </section>
 
   <CTABloque />
 </Base>
