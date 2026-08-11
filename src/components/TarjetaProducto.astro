@@ -12,8 +12,8 @@ const { producto, prioritaria = false } = Astro.props;
 const kg = capacidadKg(producto);
 ---
 
-<article class="group flex h-full flex-col overflow-hidden rounded-card border border-marino-100 bg-white transition-shadow hover:shadow-lg">
-  <a href={`/${producto.slug}`} class="block overflow-hidden bg-marino-50">
+<article class="group flex h-full flex-col overflow-hidden rounded-card border border-gris-100 bg-white transition-shadow hover:shadow-lg">
+  <a href={`/${producto.slug}`} class="block overflow-hidden bg-gris-50">
     {
       producto.imagenLocal ? (
         <img
@@ -27,27 +27,27 @@ const kg = capacidadKg(producto);
           class="aspect-square w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
         />
       ) : (
-        <div class="flex aspect-square w-full items-center justify-center text-sm text-marino-300">Sin imagen</div>
+        <div class="flex aspect-square w-full items-center justify-center text-sm text-gris-300">Sin imagen</div>
       )
     }
   </a>
 
   <div class="flex flex-1 flex-col p-4">
     <div class="mb-2 flex flex-wrap items-center gap-2">
-      {producto.marca && <span class="rounded bg-marino-100 px-2 py-0.5 text-[0.7rem] font-bold uppercase tracking-wide text-marino-700">{producto.marca}</span>}
-      {kg && <span class="rounded bg-coral-500/10 px-2 py-0.5 text-[0.7rem] font-bold text-coral-700">{kg} kg</span>}
+      {producto.marca && <span class="rounded bg-gris-100 px-2 py-0.5 text-[0.7rem] font-bold uppercase tracking-wide text-gris-700">{producto.marca}</span>}
+      {kg && <span class="rounded bg-granate-500/10 px-2 py-0.5 text-[0.7rem] font-bold text-granate-700">{kg} kg</span>}
     </div>
 
     <h3 class="text-base font-semibold leading-snug">
-      <a href={`/${producto.slug}`} class="hover:text-marino-600">{producto.nombre}</a>
+      <a href={`/${producto.slug}`} class="hover:text-granate-500">{producto.nombre}</a>
     </h3>
 
-    {producto.description && <p class="mt-2 line-clamp-3 text-sm text-marino-600">{producto.description}</p>}
+    {producto.description && <p class="mt-2 line-clamp-3 text-sm text-gris-600">{producto.description}</p>}
 
     <div class="mt-auto pt-4">
       <a
         href={`/${producto.slug}`}
-        class="inline-flex w-full items-center justify-center rounded-lg border border-marino-600 px-3 py-2 text-sm font-semibold text-marino-600 transition-colors hover:bg-marino-600 hover:text-white"
+        class="inline-flex w-full items-center justify-center rounded-lg border border-granate-500 px-3 py-2 text-sm font-semibold text-granate-500 transition-colors hover:bg-granate-500 hover:text-white"
       >
         Ver ficha y cotizar
       </a>

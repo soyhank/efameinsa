@@ -25,7 +25,7 @@ const otros = [
 >
   <Migas items={[{ nombre: 'Servicios' }]} />
 
-  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+  <header class="border-b border-gris-100 bg-gradient-to-b from-gris-50 to-white">
     <div class="contenedor py-12 sm:py-16">
       <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Servicios</h1>
       <p class="prosa mt-4 max-w-3xl text-lg">
@@ -42,11 +42,11 @@ const otros = [
           <li>
             <a
               href={s.ruta}
-              class="flex h-full flex-col rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600 hover:bg-marino-50"
+              class="flex h-full flex-col rounded-card border border-gris-100 p-6 transition-colors hover:border-granate-500 hover:bg-gris-50"
             >
               <h2 class="text-xl font-semibold">{s.nombre}</h2>
               <p class="prosa mt-3 text-sm">{s.entradilla}</p>
-              <span class="mt-auto pt-5 text-sm font-semibold text-marino-600">Ver detalle →</span>
+              <span class="mt-auto pt-5 text-sm font-semibold text-gris-600">Ver detalle →</span>
             </a>
           </li>
         ))
@@ -59,11 +59,11 @@ const otros = [
           <li>
             <a
               href={o.ruta}
-              class="flex h-full flex-col rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600 hover:bg-marino-50"
+              class="flex h-full flex-col rounded-card border border-gris-100 p-6 transition-colors hover:border-granate-500 hover:bg-gris-50"
             >
               <h2 class="text-xl font-semibold">{o.nombre}</h2>
               <p class="prosa mt-3 text-sm">{o.texto}</p>
-              <span class="mt-auto pt-5 text-sm font-semibold text-marino-600">Ver detalle →</span>
+              <span class="mt-auto pt-5 text-sm font-semibold text-gris-600">Ver detalle →</span>
             </a>
           </li>
         ))

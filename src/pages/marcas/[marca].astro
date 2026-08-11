@@ -42,7 +42,7 @@ const schema = [
 >
   <Migas items={[{ nombre: 'Marcas', ruta: '/marcas' }, { nombre }]} />
 
-  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+  <header class="border-b border-gris-100 bg-gradient-to-b from-gris-50 to-white">
     <div class="contenedor py-12 sm:py-16">
       <h1 class="text-3xl font-bold sm:text-4xl">Equipos {nombre}</h1>
       <p class="prosa mt-4 max-w-3xl text-lg">
@@ -61,7 +61,7 @@ const schema = [
             <div class="flex flex-wrap items-baseline justify-between gap-3">
               <h2 class="text-2xl font-bold">{cat?.h1 ?? slugCat}</h2>
               {cat && (
-                <a href={`/${cat.slug}`} class="text-sm font-semibold text-marino-600 hover:underline">
+                <a href={`/${cat.slug}`} class="text-sm font-semibold text-granate-500 hover:underline">
                   Ver todas las marcas de esta categoría →
                 </a>
               )}

@@ -1,12 +1,14 @@
 /** Datos únicos de la empresa. Cambiar aquí se propaga a cabecera, pie, schema.org y formularios. */
 export const EMPRESA = {
   nombre: 'Efameinsa S.A.',
-  nombreCorto: 'EFAMEINSA',
+  /* El manual de identidad exige escribir la marca como "Efameinsa" (nunca EFAMEINSA ni efameinsa) */
+  nombreCorto: 'Efameinsa',
   razonSocial: 'Efameinsa S.A.',
   descripcion:
-    'Fabricante y distribuidor de equipos de lavandería industrial y comercial en Perú. Más de 22 años equipando hoteles, clínicas, minería, textil y agroindustria.',
-  fundacion: 2002,
-  anios: new Date().getFullYear() - 2002,
+    'Fabricante y distribuidor de equipos de lavandería industrial y comercial en Perú. Más de 26 años equipando hoteles, clínicas, minería, textil y agroindustria.',
+  /* Gerencia (reunión 2026-08): "Efameinsa tiene 26 años de mercado" */
+  fundacion: 2000,
+  anios: new Date().getFullYear() - 2000,
   certificaciones: ['ISO 9001', 'ISO 14001'],
   direccion: {
     calle: 'Av. Los Cisnes Mz. H2 Lt. 18, Urb. Club de Huachipa',

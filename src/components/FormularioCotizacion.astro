@@ -15,10 +15,15 @@ const {
 } = Astro.props;
 ---
 
-<div class:list={['rounded-card border border-marino-100 bg-white p-6', compacto ? '' : 'sm:p-8']}>
+<div class:list={['rounded-card border border-gris-100 bg-white p-6', compacto ? '' : 'sm:p-8']}>
   <h2 class="text-xl font-bold sm:text-2xl">{titulo}</h2>
-  <p class="mt-2 text-sm text-marino-600">
+  <p class="mt-2 text-sm text-gris-600">
     Responde un asesor técnico, no un formulario automático. Le contactamos dentro del día hábil.
+  </p>
+  <!-- Filtro de leads domésticos: la mayor fuga de calidad según las campañas históricas -->
+  <p class="mt-2 text-xs text-gris-500">
+    Atendemos empresas, instituciones y negocios de lavandería. No comercializamos lavadoras domésticas de línea
+    blanca: nuestra línea más compacta es la semi industrial de 13 kg.
   </p>
 
   <form id="form-cotizacion" class="mt-6 grid gap-4 sm:grid-cols-2" novalidate>
@@ -30,30 +35,30 @@ const {
     </div>
 
     <div>
-      <label for="nombre" class="mb-1 block text-sm font-medium text-marino-800">Nombre y apellido *</label>
+      <label for="nombre" class="mb-1 block text-sm font-medium text-gris-800">Nombre y apellido *</label>
       <input
         type="text"
         id="nombre"
         name="nombre"
         required
         autocomplete="name"
-        class="w-full rounded-lg border border-marino-200 px-3 py-2.5 text-sm focus:border-marino-600 focus:outline-none focus:ring-1 focus:ring-marino-600"
+        class="w-full rounded-lg border border-gris-200 px-3 py-2.5 text-sm focus:border-granate-500 focus:outline-none focus:ring-1 focus:ring-granate-500"
       />
     </div>
 
     <div>
-      <label for="empresa" class="mb-1 block text-sm font-medium text-marino-800">Empresa</label>
+      <label for="empresa" class="mb-1 block text-sm font-medium text-gris-800">Empresa</label>
       <input
         type="text"
         id="empresa"
         name="empresa"
         autocomplete="organization"
-        class="w-full rounded-lg border border-marino-200 px-3 py-2.5 text-sm focus:border-marino-600 focus:outline-none focus:ring-1 focus:ring-marino-600"
+        class="w-full rounded-lg border border-gris-200 px-3 py-2.5 text-sm focus:border-granate-500 focus:outline-none focus:ring-1 focus:ring-granate-500"
       />
     </div>
 
     <div>
-      <label for="telefono" class="mb-1 block text-sm font-medium text-marino-800">Teléfono / WhatsApp *</label>
+      <label for="telefono" class="mb-1 block text-sm font-medium text-gris-800">Teléfono / WhatsApp *</label>
       <input
         type="tel"
         id="telefono"
@@ -61,28 +66,28 @@ const {
         required
         autocomplete="tel"
         inputmode="tel"
-        class="w-full rounded-lg border border-marino-200 px-3 py-2.5 text-sm focus:border-marino-600 focus:outline-none focus:ring-1 focus:ring-marino-600"
+        class="w-full rounded-lg border border-gris-200 px-3 py-2.5 text-sm focus:border-granate-500 focus:outline-none focus:ring-1 focus:ring-granate-500"
       />
     </div>
 
     <div>
-      <label for="email" class="mb-1 block text-sm font-medium text-marino-800">Correo *</label>
+      <label for="email" class="mb-1 block text-sm font-medium text-gris-800">Correo *</label>
       <input
         type="email"
         id="email"
         name="email"
         required
         autocomplete="email"
-        class="w-full rounded-lg border border-marino-200 px-3 py-2.5 text-sm focus:border-marino-600 focus:outline-none focus:ring-1 focus:ring-marino-600"
+        class="w-full rounded-lg border border-gris-200 px-3 py-2.5 text-sm focus:border-granate-500 focus:outline-none focus:ring-1 focus:ring-granate-500"
       />
     </div>
 
     <div class="sm:col-span-2">
-      <label for="sector" class="mb-1 block text-sm font-medium text-marino-800">Sector</label>
+      <label for="sector" class="mb-1 block text-sm font-medium text-gris-800">Sector</label>
       <select
         id="sector"
         name="sector"
-        class="w-full rounded-lg border border-marino-200 bg-white px-3 py-2.5 text-sm focus:border-marino-600 focus:outline-none focus:ring-1 focus:ring-marino-600"
+        class="w-full rounded-lg border border-gris-200 bg-white px-3 py-2.5 text-sm focus:border-granate-500 focus:outline-none focus:ring-1 focus:ring-granate-500"
       >
         <option value="">Seleccione…</option>
         <option>Hotelería</option>
@@ -96,7 +101,7 @@ const {
     </div>
 
     <div class="sm:col-span-2">
-      <label for="mensaje" class="mb-1 block text-sm font-medium text-marino-800">
+      <label for="mensaje" class="mb-1 block text-sm font-medium text-gris-800">
         ¿Qué necesita? *
       </label>
       <textarea
@@ -105,18 +110,18 @@ const {
         rows="4"
         required
         placeholder="Ej.: hotel de 80 habitaciones, necesito equipar la lavandería completa."
-        class="w-full rounded-lg border border-marino-200 px-3 py-2.5 text-sm focus:border-marino-600 focus:outline-none focus:ring-1 focus:ring-marino-600"
+        class="w-full rounded-lg border border-gris-200 px-3 py-2.5 text-sm focus:border-granate-500 focus:outline-none focus:ring-1 focus:ring-granate-500"
       ></textarea>
-      <p class="mt-1.5 text-xs text-marino-500">
+      <p class="mt-1.5 text-xs text-gris-500">
         Cuantos más kilos por día y tipo de prenda indique, más precisa será la propuesta.
       </p>
     </div>
 
     <div class="sm:col-span-2">
-      <label class="flex items-start gap-2 text-xs text-marino-600">
-        <input type="checkbox" name="acepta" required class="mt-0.5 rounded border-marino-300" />
+      <label class="flex items-start gap-2 text-xs text-gris-600">
+        <input type="checkbox" name="acepta" required class="mt-0.5 rounded border-gris-300" />
         <span>
-          Acepto la <a href="/politica-de-privacidad" class="underline hover:text-marino-600">política de privacidad</a> y
+          Acepto la <a href="/politica-de-privacidad" class="underline hover:text-granate-500">política de privacidad</a> y
           el tratamiento de mis datos para atender esta solicitud.
         </span>
       </label>
@@ -125,7 +130,7 @@ const {
     <div class="sm:col-span-2">
       <button
         type="submit"
-        class="w-full rounded-lg bg-coral-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-coral-600 disabled:cursor-not-allowed disabled:opacity-60"
+        class="w-full rounded-lg bg-granate-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-granate-600 disabled:cursor-not-allowed disabled:opacity-60"
       >
         Enviar solicitud
       </button>
@@ -133,8 +138,8 @@ const {
     </div>
   </form>
 
-  <div class="mt-6 border-t border-marino-100 pt-5">
-    <p class="text-sm text-marino-600">¿Prefiere hablar directamente?</p>
+  <div class="mt-6 border-t border-gris-100 pt-5">
+    <p class="text-sm text-gris-600">¿Prefiere hablar directamente?</p>
     <div class="mt-3 flex flex-wrap gap-3">
       <a
         href={enlaceWhatsApp(contexto)}
@@ -146,7 +151,7 @@ const {
       </a>
       <a
         href={`tel:+51${EMPRESA.telefonos[0].replace(/\D/g, '')}`}
-        class="rounded-lg border border-marino-300 px-4 py-2.5 text-sm font-semibold text-marino-700 hover:bg-marino-50"
+        class="rounded-lg border border-gris-300 px-4 py-2.5 text-sm font-semibold text-gris-700 hover:bg-gris-50"
       >
         {EMPRESA.telefonos[0]}
       </a>
@@ -184,12 +189,12 @@ const {
       }
       if (estado) {
         estado.textContent = datos.mensaje ?? 'No pudimos enviar la solicitud. Escríbanos por WhatsApp.';
-        estado.className = 'mt-3 text-sm text-coral-700';
+        estado.className = 'mt-3 text-sm text-granate-700';
       }
     } catch {
       if (estado) {
         estado.textContent = 'Hubo un problema de conexión. Escríbanos por WhatsApp y le atendemos ahora.';
-        estado.className = 'mt-3 text-sm text-coral-700';
+        estado.className = 'mt-3 text-sm text-granate-700';
       }
     } finally {
       boton.disabled = false;

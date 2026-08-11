@@ -14,14 +14,14 @@ const {
 } = Astro.props;
 ---
 
-<section class="bg-marino-800">
+<section class="bg-gris-800">
   <div class="contenedor py-14 text-center sm:py-16">
     <h2 class="text-2xl font-bold text-white sm:text-3xl">{titulo}</h2>
-    <p class="mx-auto mt-4 max-w-2xl text-marino-200">{texto}</p>
+    <p class="mx-auto mt-4 max-w-2xl text-gris-200">{texto}</p>
     <div class="mt-8 flex flex-wrap justify-center gap-3">
       <a
         href="/cotizar"
-        class="rounded-lg bg-coral-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-coral-600"
+        class="rounded-lg bg-granate-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-granate-600"
       >
         Solicitar cotización
       </a>
@@ -29,13 +29,13 @@ const {
         href={enlaceWhatsApp(contexto)}
         target="_blank"
         rel="noopener"
-        class="rounded-lg border border-marino-400 px-6 py-3 font-semibold text-white transition-colors hover:bg-marino-700"
+        class="rounded-lg border border-gris-400 px-6 py-3 font-semibold text-white transition-colors hover:bg-gris-700"
       >
         Escribir por WhatsApp
       </a>
       <a
         href={`tel:+51${EMPRESA.telefonos[0].replace(/\D/g, '')}`}
-        class="rounded-lg px-6 py-3 font-semibold text-marino-200 transition-colors hover:text-white"
+        class="rounded-lg px-6 py-3 font-semibold text-gris-200 transition-colors hover:text-white"
       >
         {EMPRESA.telefonos[0]}
       </a>

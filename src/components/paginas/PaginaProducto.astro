@@ -89,7 +89,7 @@ const schema = [
         {
           imagenes.length > 0 ? (
             <>
-              <div class="overflow-hidden rounded-card border border-marino-100 bg-marino-50">
+              <div class="overflow-hidden rounded-card border border-gris-100 bg-gris-50">
                 <img
                   id="imagen-principal"
                   src={imagenes[0]}
@@ -107,7 +107,7 @@ const schema = [
                     <button
                       type="button"
                       data-imagen={img}
-                      class="miniatura overflow-hidden rounded-lg border border-marino-100 bg-marino-50 p-1 transition-colors hover:border-marino-600"
+                      class="miniatura overflow-hidden rounded-lg border border-gris-100 bg-gris-50 p-1 transition-colors hover:border-granate-500"
                       aria-label={`Ver imagen ${i + 1} de ${producto.nombre}`}
                     >
                       <img src={img} alt="" width="120" height="120" loading="lazy" decoding="async" class="aspect-square w-full object-contain" />
@@ -117,7 +117,7 @@ const schema = [
               )}
             </>
           ) : (
-            <div class="flex aspect-square items-center justify-center rounded-card border border-marino-100 bg-marino-50 text-marino-300">
+            <div class="flex aspect-square items-center justify-center rounded-card border border-gris-100 bg-gris-50 text-gris-300">
               Imagen no disponible
             </div>
           )
@@ -131,13 +131,13 @@ const schema = [
             producto.marca && (
               <a
                 href={`/marcas/${slugMarca(producto.marca)}`}
-                class="rounded bg-marino-100 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-marino-700 hover:bg-marino-200"
+                class="rounded bg-gris-100 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-gris-700 hover:bg-gris-200"
               >
                 {producto.marca}
               </a>
             )
           }
-          {producto.modelo && <span class="text-xs font-medium text-marino-500">Modelo {producto.modelo}</span>}
+          {producto.modelo && <span class="text-xs font-medium text-gris-500">Modelo {producto.modelo}</span>}
         </div>
 
         <h1 class="text-3xl font-bold sm:text-4xl">{producto.nombre}</h1>
@@ -147,12 +147,12 @@ const schema = [
         {
           specsUtiles.length > 0 && (
             <div class="mt-8">
-              <h2 class="mb-3 text-sm font-bold uppercase tracking-wider text-marino-500">Especificaciones</h2>
-              <dl class="divide-y divide-marino-100 rounded-card border border-marino-100">
+              <h2 class="mb-3 text-sm font-bold uppercase tracking-wider text-gris-500">Especificaciones</h2>
+              <dl class="divide-y divide-gris-100 rounded-card border border-gris-100">
                 {specsUtiles.map((s) => (
                   <div class="grid grid-cols-[auto_1fr] gap-4 px-4 py-3 text-sm">
-                    <dt class="font-medium text-marino-600">{s.k}</dt>
-                    <dd class="text-right font-semibold text-marino-800">{s.v}</dd>
+                    <dt class="font-medium text-gris-600">{s.k}</dt>
+                    <dd class="text-right font-semibold text-gris-800">{s.v}</dd>
                   </div>
                 ))}
               </dl>
@@ -160,14 +160,14 @@ const schema = [
           )
         }
 
-        <div class="mt-8 rounded-card border-2 border-coral-500/30 bg-coral-500/5 p-5">
-          <p class="font-semibold text-marino-800">Precio según proyecto</p>
-          <p class="mt-1 text-sm text-marino-600">
+        <div class="mt-8 rounded-card border-2 border-granate-500/30 bg-granate-500/5 p-5">
+          <p class="font-semibold text-gris-800">Precio según proyecto</p>
+          <p class="mt-1 text-sm text-gris-600">
             Cotizamos por configuración: capacidad, tipo de calentamiento, instalación y puesta en marcha. Le respondemos
             dentro del día hábil.
           </p>
           <div class="mt-4 flex flex-wrap gap-3">
-            <a href="#cotizar" class="rounded-lg bg-coral-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-coral-600">
+            <a href="#cotizar" class="rounded-lg bg-granate-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-granate-600">
               Solicitar cotización
             </a>
             <a
@@ -180,14 +180,14 @@ const schema = [
             </a>
             <a
               href={`tel:+51${EMPRESA.telefonos[0].replace(/\D/g, '')}`}
-              class="rounded-lg border border-marino-300 px-5 py-2.5 text-sm font-semibold text-marino-700 hover:bg-white"
+              class="rounded-lg border border-gris-300 px-5 py-2.5 text-sm font-semibold text-gris-700 hover:bg-white"
             >
               {EMPRESA.telefonos[0]}
             </a>
           </div>
         </div>
 
-        <ul class="mt-6 space-y-2 text-sm text-marino-600">
+        <ul class="mt-6 space-y-2 text-sm text-gris-600">
           <li>✔ Servicio técnico propio y repuestos en Lima</li>
           <li>✔ Instalación y puesta en marcha en Lima y provincias</li>
           <li>✔ Respaldo de {EMPRESA.certificaciones.join(' y ')}</li>
@@ -198,7 +198,7 @@ const schema = [
 
   {
     producto.caracteristicas.length > 0 && (
-      <section class="border-y border-marino-100 bg-marino-50 py-14">
+      <section class="border-y border-gris-100 bg-gris-50 py-14">
         <div class="contenedor">
           <h2 class="text-2xl font-bold">Características</h2>
           <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -212,7 +212,7 @@ const schema = [
                     height="600"
                     loading="lazy"
                     decoding="async"
-                    class="mb-4 aspect-[3/2] w-full rounded-lg border border-marino-100 bg-white object-contain p-2"
+                    class="mb-4 aspect-[3/2] w-full rounded-lg border border-gris-100 bg-white object-contain p-2"
                   />
                 )}
                 {c.titulo && <h3 class="text-base font-semibold">{c.titulo}</h3>}

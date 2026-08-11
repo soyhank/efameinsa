@@ -39,41 +39,41 @@ const schema = [
   schema={schema}
 >
   <!-- Portada -->
-  <section class="relative overflow-hidden bg-marino-800 text-white">
+  <section class="relative overflow-hidden bg-gris-800 text-white">
     <div class="contenedor grid gap-12 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
       <div>
-        <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-marino-700 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-marino-200">
+        <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-gris-700 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gris-200">
           Fábrica propia en Lima · {EMPRESA.certificaciones.join(' · ')}
         </p>
         <h1 class="text-4xl font-bold leading-tight text-white sm:text-5xl">
           Equipamos lavanderías industriales que no pueden detenerse
         </h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-marino-100">
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-gris-100">
           {EMPRESA.anios} años fabricando y distribuyendo lavadoras, secadoras y equipos de planchado para hoteles,
           clínicas, campamentos mineros, plantas textiles y agroindustria en todo el Perú.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/cotizar" class="rounded-lg bg-coral-500 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-coral-600">
+          <a href="/cotizar" class="rounded-lg bg-granate-500 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-granate-600">
             Solicitar cotización
           </a>
           <a
             href="/equipos-de-lavanderia"
-            class="rounded-lg border border-marino-400 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-marino-700"
+            class="rounded-lg border border-gris-400 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-gris-700"
           >
             Ver catálogo completo
           </a>
         </div>
-        <dl class="mt-12 grid grid-cols-3 gap-6 border-t border-marino-700 pt-8">
+        <dl class="mt-12 grid grid-cols-3 gap-6 border-t border-gris-700 pt-8">
           <div>
-            <dt class="text-xs uppercase tracking-wide text-marino-300">Experiencia</dt>
+            <dt class="text-xs uppercase tracking-wide text-gris-300">Experiencia</dt>
             <dd class="text-3xl font-bold text-white">{EMPRESA.anios}+</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase tracking-wide text-marino-300">Modelos</dt>
+            <dt class="text-xs uppercase tracking-wide text-gris-300">Modelos</dt>
             <dd class="text-3xl font-bold text-white">{productos.length}</dd>
           </div>
           <div>
-            <dt class="text-xs uppercase tracking-wide text-marino-300">Marcas</dt>
+            <dt class="text-xs uppercase tracking-wide text-gris-300">Marcas</dt>
             <dd class="text-3xl font-bold text-white">{marcasConSlug.length}</dd>
           </div>
         </dl>
@@ -97,9 +97,9 @@ const schema = [
     </div>
   </section>
 
-  <!-- Diferencial: son fabricantes, no sólo importadores -->
-  <section class="border-b border-marino-100 py-14">
-    <div class="contenedor grid gap-8 sm:grid-cols-3">
+  <!-- Diferencial: fabricantes con planta, representación oficial, stock y servicio propio -->
+  <section class="border-b border-gris-100 py-14">
+    <div class="contenedor grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       <article>
         <h2 class="text-lg font-semibold">Fabricamos, no sólo importamos</h2>
         <p class="prosa mt-2 text-sm">
@@ -108,10 +108,17 @@ const schema = [
         </p>
       </article>
       <article>
-        <h2 class="text-lg font-semibold">Representamos marcas líderes</h2>
+        <h2 class="text-lg font-semibold">Representantes oficiales</h2>
         <p class="prosa mt-2 text-sm">
-          UniMac, Primus, Girbau, ADC, Milnor y GMP para los procesos donde la tecnología importada marca la diferencia.
-          Una sola empresa cubre toda la lavandería.
+          UniMac, Primus, Girbau, ADC, Milnor y GMP nos designaron representantes en el Perú. Comprar estas marcas aquí
+          es comprarlas con respaldo de fábrica.
+        </p>
+      </article>
+      <article>
+        <h2 class="text-lg font-semibold">Stock para entrega inmediata</h2>
+        <p class="prosa mt-2 text-sm">
+          Mantenemos equipos en showroom y almacén propios. Donde otros cotizan 45 a 90 días de importación, nosotros
+          podemos despachar de inmediato.
         </p>
       </article>
       <article>
@@ -136,11 +143,11 @@ const schema = [
           <li>
             <a
               href={`/${s.slug}`}
-              class="flex h-full flex-col rounded-card border border-marino-100 p-5 transition-colors hover:border-marino-600 hover:bg-marino-50"
+              class="flex h-full flex-col rounded-card border border-gris-100 p-5 transition-colors hover:border-granate-500 hover:bg-gris-50"
             >
-              <h3 class="text-base font-semibold text-marino-800">{s.nombre}</h3>
-              <p class="mt-2 line-clamp-3 text-sm text-marino-600">{s.entradilla}</p>
-              <span class="mt-auto pt-4 text-sm font-semibold text-marino-600">Ver soluciones →</span>
+              <h3 class="text-base font-semibold text-gris-800">{s.nombre}</h3>
+              <p class="mt-2 line-clamp-3 text-sm text-gris-600">{s.entradilla}</p>
+              <span class="mt-auto pt-4 text-sm font-semibold text-granate-500">Ver soluciones →</span>
             </a>
           </li>
         ))
@@ -149,19 +156,19 @@ const schema = [
   </section>
 
   <!-- Catálogo por línea -->
-  <section class="border-y border-marino-100 bg-marino-50 py-16">
+  <section class="border-y border-gris-100 bg-gris-50 py-16">
     <div class="contenedor">
       <h2 class="text-3xl font-bold">Catálogo de equipos</h2>
       <div class="mt-10 grid gap-10 lg:grid-cols-2">
         <div>
-          <h3 class="mb-4 border-b border-marino-200 pb-3 text-sm font-bold uppercase tracking-wider text-coral-600">
+          <h3 class="mb-4 border-b border-gris-200 pb-3 text-sm font-bold uppercase tracking-wider text-granate-500">
             Línea industrial
           </h3>
           <ul class="grid gap-2 sm:grid-cols-2">
             {
               lineas.industrial.map((c) => (
                 <li>
-                  <a href={`/${c.slug}`} class="block rounded-lg bg-white px-4 py-3 text-sm font-medium text-marino-700 transition-colors hover:text-marino-600">
+                  <a href={`/${c.slug}`} class="block rounded-lg bg-white px-4 py-3 text-sm font-medium text-gris-700 transition-colors hover:text-granate-500">
                     {c.h1}
                   </a>
                 </li>
@@ -170,14 +177,14 @@ const schema = [
           </ul>
         </div>
         <div>
-          <h3 class="mb-4 border-b border-marino-200 pb-3 text-sm font-bold uppercase tracking-wider text-coral-600">
+          <h3 class="mb-4 border-b border-gris-200 pb-3 text-sm font-bold uppercase tracking-wider text-granate-500">
             Línea comercial
           </h3>
           <ul class="grid gap-2 sm:grid-cols-2">
             {
               lineas.comercial.map((c) => (
                 <li>
-                  <a href={`/${c.slug}`} class="block rounded-lg bg-white px-4 py-3 text-sm font-medium text-marino-700 transition-colors hover:text-marino-600">
+                  <a href={`/${c.slug}`} class="block rounded-lg bg-white px-4 py-3 text-sm font-medium text-gris-700 transition-colors hover:text-granate-500">
                     {c.h1}
                   </a>
                 </li>
@@ -193,7 +200,7 @@ const schema = [
   <section class="contenedor py-16">
     <div class="flex flex-wrap items-baseline justify-between gap-3">
       <h2 class="text-3xl font-bold">Equipos más consultados</h2>
-      <a href="/equipos-de-lavanderia" class="text-sm font-semibold text-marino-600 hover:underline">Ver catálogo completo →</a>
+      <a href="/equipos-de-lavanderia" class="text-sm font-semibold text-granate-500 hover:underline">Ver catálogo completo →</a>
     </div>
     <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {vitrina.slice(0, 4).map((p) => <TarjetaProducto producto={p} />)}
@@ -201,9 +208,9 @@ const schema = [
   </section>
 
   <!-- Marcas -->
-  <section class="border-t border-marino-100 py-14">
+  <section class="border-t border-gris-100 py-14">
     <div class="contenedor">
-      <h2 class="text-center text-sm font-bold uppercase tracking-wider text-marino-500">Marcas que representamos</h2>
+      <h2 class="text-center text-sm font-bold uppercase tracking-wider text-gris-500">Marcas que representamos</h2>
       <ul class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
         {
           logosMarcas.map((m) => (
@@ -221,7 +228,7 @@ const schema = [
         }
       </ul>
       <p class="mt-8 text-center">
-        <a href="/marcas" class="text-sm font-semibold text-marino-600 hover:underline">Ver equipos por marca →</a>
+        <a href="/marcas" class="text-sm font-semibold text-granate-500 hover:underline">Ver equipos por marca →</a>
       </p>
     </div>
   </section>
@@ -230,19 +237,19 @@ const schema = [
   <section class="contenedor py-16">
     <h2 class="text-3xl font-bold">Más que vender máquinas</h2>
     <div class="mt-8 grid gap-5 sm:grid-cols-3">
-      <a href="/servicios/asesoria-en-proyectos-de-lavanderia" class="rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600">
+      <a href="/servicios/asesoria-en-proyectos-de-lavanderia" class="rounded-card border border-gris-100 p-6 transition-colors hover:border-granate-500">
         <h3 class="text-lg font-semibold">Proyectos de lavandería</h3>
         <p class="prosa mt-2 text-sm">
           Diseño del área, cálculo de carga, distribución de equipos e instalaciones de vapor, agua y desagüe.
         </p>
       </a>
-      <a href="/servicios/asesoria-en-negocios-de-lavanderia" class="rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600">
+      <a href="/servicios/asesoria-en-negocios-de-lavanderia" class="rounded-card border border-gris-100 p-6 transition-colors hover:border-granate-500">
         <h3 class="text-lg font-semibold">Asesoría de negocio</h3>
         <p class="prosa mt-2 text-sm">
           Para quien abre una lavandería: inversión, punto de equilibrio y elección de equipos según el mercado del local.
         </p>
       </a>
-      <a href="/soporte-tecnico" class="rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600">
+      <a href="/soporte-tecnico" class="rounded-card border border-gris-100 p-6 transition-colors hover:border-granate-500">
         <h3 class="text-lg font-semibold">Soporte técnico</h3>
         <p class="prosa mt-2 text-sm">
           Mantenimiento preventivo y correctivo, repuestos originales y atención en Lima y provincias.

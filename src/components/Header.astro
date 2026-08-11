@@ -9,9 +9,9 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
 
 <header class="sticky top-0 z-50 bg-white shadow-sm">
   <!-- Barra de contacto: el teléfono es el canal principal en venta B2B de capital -->
-  <div class="bg-marino-800 text-marino-100">
+  <div class="bg-gris-800 text-gris-100">
     <div class="contenedor flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2 text-xs sm:text-sm">
-      <p class="hidden sm:block">{EMPRESA.certificaciones.join(' · ')} · Fabricación propia desde 2002</p>
+      <p class="hidden sm:block">{EMPRESA.certificaciones.join(' · ')} · Fabricación propia desde 2000</p>
       <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
         <a href={`tel:+51${EMPRESA.telefonos[0].replace(/\D/g, '')}`} class="hover:text-white">
           <span aria-hidden="true">☎</span> {EMPRESA.telefonos[0]}
@@ -19,7 +19,7 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
         <a href={`mailto:${EMPRESA.email}`} class="hidden hover:text-white md:inline">
           <span aria-hidden="true">✉</span> {EMPRESA.email}
         </a>
-        <a href={enlaceWhatsApp()} target="_blank" rel="noopener" class="font-medium text-marino-300 hover:text-white">
+        <a href={enlaceWhatsApp()} target="_blank" rel="noopener" class="font-medium text-gris-300 hover:text-white">
           WhatsApp {EMPRESA.celular}
         </a>
       </div>
@@ -43,7 +43,7 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
           href="/equipos-de-lavanderia"
           class:list={[
             'flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors',
-            activa('/equipos-de-lavanderia') ? 'text-marino-600' : 'text-marino-800 hover:text-marino-600',
+            activa('/equipos-de-lavanderia') ? 'text-granate-500' : 'text-gris-800 hover:text-granate-500',
           ]}
           aria-haspopup="true"
         >
@@ -53,16 +53,16 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
         <div
           class="invisible absolute left-1/2 top-full w-[52rem] -translate-x-1/2 pt-1 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
         >
-          <div class="grid grid-cols-2 gap-6 rounded-xl border border-marino-100 bg-white p-6 shadow-xl">
+          <div class="grid grid-cols-2 gap-6 rounded-xl border border-gris-100 bg-white p-6 shadow-xl">
             <div>
-              <p class="mb-2 border-b border-marino-100 pb-2 text-xs font-bold uppercase tracking-wider text-coral-600">
+              <p class="mb-2 border-b border-gris-100 pb-2 text-xs font-bold uppercase tracking-wider text-granate-500">
                 Línea industrial
               </p>
               <ul class="space-y-1">
                 {
                   lineas.industrial.map((c) => (
                     <li>
-                      <a href={`/${c.slug}`} class="block rounded px-2 py-1 text-sm text-marino-700 hover:bg-marino-50 hover:text-marino-600">
+                      <a href={`/${c.slug}`} class="block rounded px-2 py-1 text-sm text-gris-700 hover:bg-gris-50 hover:text-granate-500">
                         {c.h1}
                       </a>
                     </li>
@@ -71,21 +71,21 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
               </ul>
             </div>
             <div>
-              <p class="mb-2 border-b border-marino-100 pb-2 text-xs font-bold uppercase tracking-wider text-coral-600">
+              <p class="mb-2 border-b border-gris-100 pb-2 text-xs font-bold uppercase tracking-wider text-granate-500">
                 Línea comercial
               </p>
               <ul class="space-y-1">
                 {
                   lineas.comercial.map((c) => (
                     <li>
-                      <a href={`/${c.slug}`} class="block rounded px-2 py-1 text-sm text-marino-700 hover:bg-marino-50 hover:text-marino-600">
+                      <a href={`/${c.slug}`} class="block rounded px-2 py-1 text-sm text-gris-700 hover:bg-gris-50 hover:text-granate-500">
                         {c.h1}
                       </a>
                     </li>
                   ))
                 }
               </ul>
-              <a href="/marcas" class="mt-4 inline-block rounded px-2 py-1 text-sm font-medium text-marino-600 hover:underline">
+              <a href="/marcas" class="mt-4 inline-block rounded px-2 py-1 text-sm font-medium text-granate-500 hover:underline">
                 Ver todas las marcas →
               </a>
             </div>
@@ -98,7 +98,7 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
           href="/sectores"
           class:list={[
             'flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors',
-            activa('/sectores') ? 'text-marino-600' : 'text-marino-800 hover:text-marino-600',
+            activa('/sectores') ? 'text-granate-500' : 'text-gris-800 hover:text-granate-500',
           ]}
           aria-haspopup="true"
         >
@@ -107,11 +107,11 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
         <div
           class="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 pt-1 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
         >
-          <ul class="rounded-xl border border-marino-100 bg-white p-3 shadow-xl">
+          <ul class="rounded-xl border border-gris-100 bg-white p-3 shadow-xl">
             {
               sectores.map((s) => (
                 <li>
-                  <a href={`/${s.slug}`} class="block rounded px-3 py-2 text-sm text-marino-700 hover:bg-marino-50 hover:text-marino-600">
+                  <a href={`/${s.slug}`} class="block rounded px-3 py-2 text-sm text-gris-700 hover:bg-gris-50 hover:text-granate-500">
                     {s.nombre}
                   </a>
                 </li>
@@ -126,7 +126,7 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
           href="/servicios"
           class:list={[
             'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
-            activa('/servicios') ? 'text-marino-600' : 'text-marino-800 hover:text-marino-600',
+            activa('/servicios') ? 'text-granate-500' : 'text-gris-800 hover:text-granate-500',
           ]}>Servicios</a
         >
       </li>
@@ -135,7 +135,7 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
           href="/blog"
           class:list={[
             'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
-            activa('/blog') ? 'text-marino-600' : 'text-marino-800 hover:text-marino-600',
+            activa('/blog') ? 'text-granate-500' : 'text-gris-800 hover:text-granate-500',
           ]}>Recursos</a
         >
       </li>
@@ -144,7 +144,7 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
           href="/nosotros"
           class:list={[
             'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
-            activa('/nosotros') ? 'text-marino-600' : 'text-marino-800 hover:text-marino-600',
+            activa('/nosotros') ? 'text-granate-500' : 'text-gris-800 hover:text-granate-500',
           ]}>Nosotros</a
         >
       </li>
@@ -153,14 +153,14 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
     <div class="flex items-center gap-2">
       <a
         href="/cotizar"
-        class="hidden rounded-lg bg-coral-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-coral-600 sm:inline-block"
+        class="hidden rounded-lg bg-granate-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-granate-600 sm:inline-block"
       >
         Solicitar cotización
       </a>
       <button
         type="button"
         id="abrir-menu"
-        class="rounded-md p-2 text-marino-800 lg:hidden"
+        class="rounded-md p-2 text-gris-800 lg:hidden"
         aria-label="Abrir menú"
         aria-expanded="false"
         aria-controls="menu-movil"
@@ -173,34 +173,34 @@ const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.start
   </nav>
 
   <!-- Menú móvil -->
-  <div id="menu-movil" class="hidden border-t border-marino-100 bg-white lg:hidden">
+  <div id="menu-movil" class="hidden border-t border-gris-100 bg-white lg:hidden">
     <div class="contenedor max-h-[75vh] overflow-y-auto py-4">
-      <a href="/cotizar" class="mb-4 block rounded-lg bg-coral-500 px-4 py-3 text-center font-semibold text-white">
+      <a href="/cotizar" class="mb-4 block rounded-lg bg-granate-500 px-4 py-3 text-center font-semibold text-white">
         Solicitar cotización
       </a>
-      <details class="border-b border-marino-100 py-2">
-        <summary class="cursor-pointer py-1 font-medium text-marino-800">Línea industrial</summary>
+      <details class="border-b border-gris-100 py-2">
+        <summary class="cursor-pointer py-1 font-medium text-gris-800">Línea industrial</summary>
         <ul class="mt-2 space-y-1 pl-3">
-          {lineas.industrial.map((c) => <li><a href={`/${c.slug}`} class="block py-1.5 text-sm text-marino-700">{c.h1}</a></li>)}
+          {lineas.industrial.map((c) => <li><a href={`/${c.slug}`} class="block py-1.5 text-sm text-gris-700">{c.h1}</a></li>)}
         </ul>
       </details>
-      <details class="border-b border-marino-100 py-2">
-        <summary class="cursor-pointer py-1 font-medium text-marino-800">Línea comercial</summary>
+      <details class="border-b border-gris-100 py-2">
+        <summary class="cursor-pointer py-1 font-medium text-gris-800">Línea comercial</summary>
         <ul class="mt-2 space-y-1 pl-3">
-          {lineas.comercial.map((c) => <li><a href={`/${c.slug}`} class="block py-1.5 text-sm text-marino-700">{c.h1}</a></li>)}
+          {lineas.comercial.map((c) => <li><a href={`/${c.slug}`} class="block py-1.5 text-sm text-gris-700">{c.h1}</a></li>)}
         </ul>
       </details>
-      <details class="border-b border-marino-100 py-2">
-        <summary class="cursor-pointer py-1 font-medium text-marino-800">Sectores</summary>
+      <details class="border-b border-gris-100 py-2">
+        <summary class="cursor-pointer py-1 font-medium text-gris-800">Sectores</summary>
         <ul class="mt-2 space-y-1 pl-3">
-          {sectores.map((s) => <li><a href={`/${s.slug}`} class="block py-1.5 text-sm text-marino-700">{s.nombre}</a></li>)}
+          {sectores.map((s) => <li><a href={`/${s.slug}`} class="block py-1.5 text-sm text-gris-700">{s.nombre}</a></li>)}
         </ul>
       </details>
-      <a href="/servicios" class="block border-b border-marino-100 py-3 font-medium text-marino-800">Servicios</a>
-      <a href="/marcas" class="block border-b border-marino-100 py-3 font-medium text-marino-800">Marcas</a>
-      <a href="/blog" class="block border-b border-marino-100 py-3 font-medium text-marino-800">Recursos</a>
-      <a href="/nosotros" class="block border-b border-marino-100 py-3 font-medium text-marino-800">Nosotros</a>
-      <a href="/contactenos" class="block py-3 font-medium text-marino-800">Contacto</a>
+      <a href="/servicios" class="block border-b border-gris-100 py-3 font-medium text-gris-800">Servicios</a>
+      <a href="/marcas" class="block border-b border-gris-100 py-3 font-medium text-gris-800">Marcas</a>
+      <a href="/blog" class="block border-b border-gris-100 py-3 font-medium text-gris-800">Recursos</a>
+      <a href="/nosotros" class="block border-b border-gris-100 py-3 font-medium text-gris-800">Nosotros</a>
+      <a href="/contactenos" class="block py-3 font-medium text-gris-800">Contacto</a>
     </div>
   </div>
 </header>

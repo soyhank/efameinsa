@@ -31,11 +31,11 @@ const pasos = [
           {
             pasos.map((p, i) => (
               <li class="flex gap-4">
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-marino-800 text-sm font-bold text-white">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gris-800 text-sm font-bold text-white">
                   {i + 1}
                 </span>
                 <div>
-                  <h2 class="font-semibold text-marino-800">{p.titulo}</h2>
+                  <h2 class="font-semibold text-gris-800">{p.titulo}</h2>
                   <p class="prosa mt-1 text-sm">{p.texto}</p>
                 </div>
               </li>
@@ -43,13 +43,13 @@ const pasos = [
           }
         </ol>
 
-        <div class="mt-10 rounded-card bg-marino-50 p-6">
-          <h2 class="font-semibold text-marino-800">¿Prefiere hablar ahora?</h2>
-          <p class="mt-2 text-sm text-marino-600">{EMPRESA.horario}</p>
+        <div class="mt-10 rounded-card bg-gris-50 p-6">
+          <h2 class="font-semibold text-gris-800">¿Prefiere hablar ahora?</h2>
+          <p class="mt-2 text-sm text-gris-600">{EMPRESA.horario}</p>
           <div class="mt-4 flex flex-wrap gap-3">
             <a
               href={`tel:+51${EMPRESA.telefonos[0].replace(/\D/g, '')}`}
-              class="rounded-lg bg-marino-800 px-5 py-2.5 text-sm font-semibold text-white hover:bg-marino-700"
+              class="rounded-lg bg-gris-800 px-5 py-2.5 text-sm font-semibold text-white hover:bg-gris-700"
             >
               {EMPRESA.telefonos[0]}
             </a>

@@ -1,25 +1,76 @@
 @import 'tailwindcss';
 
+/* LG Smart: tipografía corporativa según el Manual de Identidad de Efameinsa */
+@font-face {
+  font-family: 'LG Smart';
+  src: url('/fonts/lg-smart-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'LG Smart';
+  src: url('/fonts/lg-smart-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'LG Smart';
+  src: url('/fonts/lg-smart-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'LG Smart';
+  src: url('/fonts/lg-smart-semibold.woff2') format('woff2');
+  font-weight: 500 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'LG Smart';
+  src: url('/fonts/lg-smart-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'LG Smart';
+  src: url('/fonts/lg-smart-bold-italic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 @theme {
-  /* Paleta heredada de la identidad actual de Efameinsa */
-  --color-marino-50: #f2f7fa;
-  --color-marino-100: #e3eef4;
-  --color-marino-200: #c2dbe8;
-  --color-marino-300: #8fc0d6;
-  --color-marino-400: #67b0d6;
-  --color-marino-500: #3d8cb8;
-  --color-marino-600: #1a6097;
-  --color-marino-700: #174a6e;
-  --color-marino-800: #143546;
-  --color-marino-900: #0e2532;
-  --color-marino-950: #081821;
+  /* Paleta del Manual de Identidad Corporativa de Efameinsa:
+     Granate #7E1210 · Negro #000000 · Gris #6B6B6B · Blanco #FFFFFF */
+  --color-gris-50: #f7f7f7;
+  --color-gris-100: #ededed;
+  --color-gris-200: #d9d9d9;
+  --color-gris-300: #b5b5b5;
+  --color-gris-400: #939393;
+  --color-gris-500: #6b6b6b;
+  --color-gris-600: #545454;
+  --color-gris-700: #3f3f3f;
+  --color-gris-800: #282828;
+  --color-gris-900: #171717;
+  --color-gris-950: #0d0d0d;
 
-  --color-coral-400: #f89b85;
-  --color-coral-500: #f6846a;
-  --color-coral-600: #e35f42;
-  --color-coral-700: #c04a30;
+  --color-granate-50: #fbf3f2;
+  --color-granate-100: #f5e2e0;
+  --color-granate-200: #e9c0bc;
+  --color-granate-300: #d6928c;
+  --color-granate-400: #b04840;
+  --color-granate-500: #7e1210;
+  --color-granate-600: #6a0f0d;
+  --color-granate-700: #560c0b;
+  --color-granate-800: #420908;
+  --color-granate-900: #310706;
 
-  --font-sans: 'Inter var', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'LG Smart', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --radius-card: 0.75rem;
 }
@@ -31,19 +82,19 @@
   }
 
   body {
-    @apply bg-white text-marino-900 font-sans antialiased;
+    @apply bg-white text-gris-900 font-sans antialiased;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply text-marino-800 font-semibold tracking-tight text-balance;
+    @apply text-gris-800 font-semibold tracking-tight text-balance;
   }
 
   /* El foco visible es el único indicador de teclado en un sitio sin estados hover */
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-marino-600;
+    @apply outline-2 outline-offset-2 outline-granate-500;
   }
 }
 
@@ -53,7 +104,7 @@
   }
 
   .prosa {
-    @apply text-marino-700 leading-relaxed;
+    @apply text-gris-700 leading-relaxed;
   }
 
   .prosa p + p {
@@ -62,7 +113,7 @@
 
   /* Tipografía de los artículos: el HTML lo genera Markdown, por eso se estiliza por descendencia */
   .contenido-blog {
-    @apply leading-relaxed text-marino-700;
+    @apply leading-relaxed text-gris-700;
   }
 
   .contenido-blog > * + * {
@@ -86,15 +137,15 @@
   }
 
   .contenido-blog a {
-    @apply font-semibold text-marino-600 underline underline-offset-2;
+    @apply font-semibold text-gris-600 underline underline-offset-2;
   }
 
   .contenido-blog strong {
-    @apply font-semibold text-marino-800;
+    @apply font-semibold text-gris-800;
   }
 
   .contenido-blog blockquote {
-    @apply border-l-4 border-coral-500 bg-coral-500/5 px-5 py-4 text-lg font-medium text-marino-800;
+    @apply border-l-4 border-granate-500 bg-granate-500/5 px-5 py-4 text-lg font-medium text-gris-800;
   }
 
   .contenido-blog table {
@@ -102,11 +153,11 @@
   }
 
   .contenido-blog th {
-    @apply border border-marino-200 bg-marino-50 px-4 py-2 text-left font-semibold text-marino-800;
+    @apply border border-gris-200 bg-gris-50 px-4 py-2 text-left font-semibold text-gris-800;
   }
 
   .contenido-blog td {
-    @apply border border-marino-200 px-4 py-2;
+    @apply border border-gris-200 px-4 py-2;
   }
 }
 

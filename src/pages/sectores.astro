@@ -12,7 +12,7 @@ import { sectores } from '../data/sectores';
 >
   <Migas items={[{ nombre: 'Sectores' }]} />
 
-  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+  <header class="border-b border-gris-100 bg-gradient-to-b from-gris-50 to-white">
     <div class="contenedor py-12 sm:py-16">
       <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Soluciones por sector</h1>
       <p class="prosa mt-4 max-w-3xl text-lg">
@@ -29,12 +29,12 @@ import { sectores } from '../data/sectores';
           <li>
             <a
               href={`/${s.slug}`}
-              class="flex h-full flex-col rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600 hover:bg-marino-50"
+              class="flex h-full flex-col rounded-card border border-gris-100 p-6 transition-colors hover:border-granate-500 hover:bg-gris-50"
             >
               <h2 class="text-xl font-semibold">{s.nombre}</h2>
-              <p class="mt-1 text-sm font-medium text-marino-500">{s.titulo}</p>
+              <p class="mt-1 text-sm font-medium text-gris-500">{s.titulo}</p>
               <p class="prosa mt-3 text-sm">{s.entradilla}</p>
-              <span class="mt-auto pt-5 text-sm font-semibold text-marino-600">Ver equipos →</span>
+              <span class="mt-auto pt-5 text-sm font-semibold text-gris-600">Ver equipos →</span>
             </a>
           </li>
         ))

@@ -16,7 +16,7 @@ const actualizacion = '10 de agosto de 2026';
   <article class="contenedor py-12">
     <div class="mx-auto max-w-3xl">
       <h1 class="text-3xl font-bold sm:text-4xl">Política de privacidad</h1>
-      <p class="mt-2 text-sm text-marino-500">Última actualización: {actualizacion}</p>
+      <p class="mt-2 text-sm text-gris-500">Última actualización: {actualizacion}</p>
 
       <div class="prosa mt-8 space-y-6">
         <p>
@@ -27,7 +27,7 @@ const actualizacion = '10 de agosto de 2026';
         </p>
 
         <section>
-          <h2 class="text-xl font-bold text-marino-800">Datos que solicitamos</h2>
+          <h2 class="text-xl font-bold text-gris-800">Datos que solicitamos</h2>
           <p class="mt-2">
             Recogemos únicamente los datos necesarios para atender su consulta o cotización: nombre y apellido, empresa,
             teléfono, correo electrónico, sector de actividad y el detalle de su requerimiento. No solicitamos datos
@@ -36,7 +36,7 @@ const actualizacion = '10 de agosto de 2026';
         </section>
 
         <section>
-          <h2 class="text-xl font-bold text-marino-800">Finalidad del tratamiento</h2>
+          <h2 class="text-xl font-bold text-gris-800">Finalidad del tratamiento</h2>
           <p class="mt-2">Utilizamos sus datos para:</p>
           <ul class="mt-2 list-disc space-y-1 pl-6">
             <li>Responder su solicitud de cotización, información o servicio técnico.</li>
@@ -47,7 +47,7 @@ const actualizacion = '10 de agosto de 2026';
         </section>
 
         <section>
-          <h2 class="text-xl font-bold text-marino-800">Conservación y seguridad</h2>
+          <h2 class="text-xl font-bold text-gris-800">Conservación y seguridad</h2>
           <p class="mt-2">
             Sus datos se conservan en el banco de datos de {EMPRESA.razonSocial} mientras subsista la relación comercial
             o el interés legítimo derivado de su consulta. Aplicamos medidas técnicas y organizativas razonables para
@@ -56,7 +56,7 @@ const actualizacion = '10 de agosto de 2026';
         </section>
 
         <section>
-          <h2 class="text-xl font-bold text-marino-800">Transferencia a terceros</h2>
+          <h2 class="text-xl font-bold text-gris-800">Transferencia a terceros</h2>
           <p class="mt-2">
             No vendemos ni cedemos su información a terceros con fines comerciales. Sólo compartimos datos con
             proveedores que nos prestan servicios de infraestructura tecnológica y de correo, bajo obligación de
@@ -65,18 +65,18 @@ const actualizacion = '10 de agosto de 2026';
         </section>
 
         <section>
-          <h2 class="text-xl font-bold text-marino-800">Derechos ARCO</h2>
+          <h2 class="text-xl font-bold text-gris-800">Derechos ARCO</h2>
           <p class="mt-2">
             Usted puede ejercer en cualquier momento sus derechos de acceso, rectificación, cancelación y oposición sobre
             sus datos personales, así como revocar el consentimiento otorgado. Para hacerlo, escríbanos a
-            <a href={`mailto:${EMPRESA.email}`} class="font-semibold text-marino-600 hover:underline">{EMPRESA.email}</a>
+            <a href={`mailto:${EMPRESA.email}`} class="font-semibold text-granate-500 hover:underline">{EMPRESA.email}</a>
             o llámenos al {EMPRESA.telefonos[0]}, indicando su solicitud y adjuntando un documento que acredite su
             identidad.
           </p>
         </section>
 
         <section>
-          <h2 class="text-xl font-bold text-marino-800">Datos de navegación</h2>
+          <h2 class="text-xl font-bold text-gris-800">Datos de navegación</h2>
           <p class="mt-2">
             Este sitio puede utilizar cookies y herramientas de analítica para entender cómo se navega el catálogo y
             mejorar la experiencia. Esa información se trata de forma agregada y no permite identificarle
@@ -85,7 +85,7 @@ const actualizacion = '10 de agosto de 2026';
         </section>
 
         <section>
-          <h2 class="text-xl font-bold text-marino-800">Cambios en esta política</h2>
+          <h2 class="text-xl font-bold text-gris-800">Cambios en esta política</h2>
           <p class="mt-2">
             Podemos actualizar esta política para reflejar cambios normativos o de nuestros procesos. Publicaremos la
             versión vigente en esta misma página, indicando la fecha de última actualización.
@@ -93,11 +93,11 @@ const actualizacion = '10 de agosto de 2026';
         </section>
 
         <section>
-          <h2 class="text-xl font-bold text-marino-800">Responsable del tratamiento</h2>
+          <h2 class="text-xl font-bold text-gris-800">Responsable del tratamiento</h2>
           <address class="mt-2 not-italic">
             {EMPRESA.razonSocial}<br />
             {EMPRESA.direccion.calle}, {EMPRESA.direccion.distrito}, {EMPRESA.direccion.ciudad}<br />
-            <a href={`mailto:${EMPRESA.email}`} class="font-semibold text-marino-600 hover:underline">{EMPRESA.email}</a> ·
+            <a href={`mailto:${EMPRESA.email}`} class="font-semibold text-granate-500 hover:underline">{EMPRESA.email}</a> ·
             {EMPRESA.telefonos[0]}
           </address>
         </section>

@@ -6,15 +6,15 @@ import { sectores } from '../data/sectores';
 const anio = new Date().getFullYear();
 ---
 
-<footer class="mt-24 bg-marino-900 text-marino-200">
+<footer class="mt-24 bg-gris-900 text-gris-200">
   <div class="contenedor grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
     <div>
       <img src="/img/marca/logo-header.png" alt={EMPRESA.nombre} width="298" height="48" class="mb-4 h-10 w-auto brightness-0 invert" loading="lazy" />
-      <p class="text-sm leading-relaxed text-marino-300">{EMPRESA.descripcion}</p>
+      <p class="text-sm leading-relaxed text-gris-300">{EMPRESA.descripcion}</p>
       <ul class="mt-4 flex gap-2">
         {
           EMPRESA.certificaciones.map((c) => (
-            <li class="rounded border border-marino-700 px-2 py-1 text-xs font-medium text-marino-300">{c}</li>
+            <li class="rounded border border-gris-700 px-2 py-1 text-xs font-medium text-gris-300">{c}</li>
           ))
         }
       </ul>
@@ -28,24 +28,24 @@ const anio = new Date().getFullYear();
     <div>
       <h2 class="mb-4 text-sm font-bold uppercase tracking-wider text-white">Línea industrial</h2>
       <ul class="space-y-2 text-sm">
-        {lineas.industrial.map((c) => <li><a href={`/${c.slug}`} class="text-marino-300 hover:text-white">{c.h1}</a></li>)}
+        {lineas.industrial.map((c) => <li><a href={`/${c.slug}`} class="text-gris-300 hover:text-white">{c.h1}</a></li>)}
       </ul>
     </div>
 
     <div>
       <h2 class="mb-4 text-sm font-bold uppercase tracking-wider text-white">Línea comercial</h2>
       <ul class="space-y-2 text-sm">
-        {lineas.comercial.map((c) => <li><a href={`/${c.slug}`} class="text-marino-300 hover:text-white">{c.h1}</a></li>)}
+        {lineas.comercial.map((c) => <li><a href={`/${c.slug}`} class="text-gris-300 hover:text-white">{c.h1}</a></li>)}
       </ul>
       <h2 class="mb-3 mt-6 text-sm font-bold uppercase tracking-wider text-white">Sectores</h2>
       <ul class="space-y-2 text-sm">
-        {sectores.slice(0, 5).map((s) => <li><a href={`/${s.slug}`} class="text-marino-300 hover:text-white">{s.nombre}</a></li>)}
+        {sectores.slice(0, 5).map((s) => <li><a href={`/${s.slug}`} class="text-gris-300 hover:text-white">{s.nombre}</a></li>)}
       </ul>
     </div>
 
     <div>
       <h2 class="mb-4 text-sm font-bold uppercase tracking-wider text-white">Contacto</h2>
-      <address class="space-y-3 text-sm not-italic text-marino-300">
+      <address class="space-y-3 text-sm not-italic text-gris-300">
         <p>{EMPRESA.direccion.calle}<br />{EMPRESA.direccion.distrito}, {EMPRESA.direccion.ciudad}</p>
         <p>
           {EMPRESA.telefonos.map((t) => (
@@ -54,19 +54,19 @@ const anio = new Date().getFullYear();
           <a href={`tel:${EMPRESA.celular.replace(/\s/g, '')}`} class="block hover:text-white">{EMPRESA.celular}</a>
         </p>
         <p><a href={`mailto:${EMPRESA.email}`} class="hover:text-white">{EMPRESA.email}</a></p>
-        <p class="text-marino-400">{EMPRESA.horario}</p>
+        <p class="text-gris-400">{EMPRESA.horario}</p>
       </address>
       <ul class="mt-6 space-y-2 text-sm">
-        <li><a href="/servicios" class="text-marino-300 hover:text-white">Servicios</a></li>
-        <li><a href="/soporte-tecnico" class="text-marino-300 hover:text-white">Soporte técnico</a></li>
-        <li><a href="/trabaja-con-nosotros" class="text-marino-300 hover:text-white">Trabaja con nosotros</a></li>
-        <li><a href="/contactenos" class="text-marino-300 hover:text-white">Contacto</a></li>
+        <li><a href="/servicios" class="text-gris-300 hover:text-white">Servicios</a></li>
+        <li><a href="/soporte-tecnico" class="text-gris-300 hover:text-white">Soporte técnico</a></li>
+        <li><a href="/trabaja-con-nosotros" class="text-gris-300 hover:text-white">Trabaja con nosotros</a></li>
+        <li><a href="/contactenos" class="text-gris-300 hover:text-white">Contacto</a></li>
       </ul>
     </div>
   </div>
 
-  <div class="border-t border-marino-800">
-    <div class="contenedor flex flex-col gap-3 py-6 text-xs text-marino-400 sm:flex-row sm:items-center sm:justify-between">
+  <div class="border-t border-gris-800">
+    <div class="contenedor flex flex-col gap-3 py-6 text-xs text-gris-400 sm:flex-row sm:items-center sm:justify-between">
       <p>© {anio} {EMPRESA.razonSocial}. Todos los derechos reservados.</p>
       <div class="flex gap-5">
         <a href="/politica-de-privacidad" class="hover:text-white">Política de privacidad</a>

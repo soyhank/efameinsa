@@ -30,8 +30,8 @@ const perfiles = [
       <ul class="mt-4 space-y-2">
         {
           perfiles.map((p) => (
-            <li class="flex gap-3 text-marino-700">
-              <span class="text-marino-400" aria-hidden="true">
+            <li class="flex gap-3 text-gris-700">
+              <span class="text-gris-400" aria-hidden="true">
                 ▸
               </span>
               {p}
@@ -40,16 +40,16 @@ const perfiles = [
         }
       </ul>
 
-      <div class="mt-10 rounded-card bg-marino-50 p-6">
+      <div class="mt-10 rounded-card bg-gris-50 p-6">
         <h2 class="text-xl font-bold">Envíe su currículum</h2>
         <p class="prosa mt-2 text-sm">
-          Escríbanos a <a href={`mailto:${EMPRESA.email}?subject=Postulación`} class="font-semibold text-marino-600 hover:underline">{EMPRESA.email}</a>
+          Escríbanos a <a href={`mailto:${EMPRESA.email}?subject=Postulación`} class="font-semibold text-granate-500 hover:underline">{EMPRESA.email}</a>
           con el asunto «Postulación», indicando el puesto de interés y adjuntando su CV en PDF. Revisamos todas las
           postulaciones y contactamos a quienes calzan con una vacante abierta.
         </p>
         <a
           href={`mailto:${EMPRESA.email}?subject=Postulaci%C3%B3n`}
-          class="mt-5 inline-block rounded-lg bg-coral-500 px-6 py-3 font-semibold text-white hover:bg-coral-600"
+          class="mt-5 inline-block rounded-lg bg-granate-500 px-6 py-3 font-semibold text-white hover:bg-granate-600"
         >
           Enviar mi CV
         </a>

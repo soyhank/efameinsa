@@ -18,7 +18,7 @@ const logo = (nombre: string) => {
 >
   <Migas items={[{ nombre: 'Marcas' }]} />
 
-  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+  <header class="border-b border-gris-100 bg-gradient-to-b from-gris-50 to-white">
     <div class="contenedor py-12 sm:py-16">
       <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Marcas que representamos</h1>
       <p class="prosa mt-4 max-w-3xl text-lg">
@@ -38,16 +38,16 @@ const logo = (nombre: string) => {
             <li>
               <a
                 href={`/marcas/${m.slug}`}
-                class="flex h-full flex-col rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600 hover:bg-marino-50"
+                class="flex h-full flex-col rounded-card border border-gris-100 p-6 transition-colors hover:border-granate-500 hover:bg-gris-50"
               >
                 <div class="flex h-12 items-center">
                   {src ? (
                     <img src={src} alt={m.nombre} height="40" loading="lazy" decoding="async" class="h-9 w-auto" />
                   ) : (
-                    <span class="text-xl font-bold text-marino-800">{m.nombre}</span>
+                    <span class="text-xl font-bold text-gris-800">{m.nombre}</span>
                   )}
                 </div>
-                <p class="mt-4 text-sm text-marino-600">{m.total} equipos en catálogo</p>
+                <p class="mt-4 text-sm text-gris-600">{m.total} equipos en catálogo</p>
                 {portada && (
                   <img
                     src={portada}
@@ -59,7 +59,7 @@ const logo = (nombre: string) => {
                     class="mt-4 h-32 w-full object-contain"
                   />
                 )}
-                <span class="mt-auto pt-4 text-sm font-semibold text-marino-600">Ver equipos →</span>
+                <span class="mt-auto pt-4 text-sm font-semibold text-gris-600">Ver equipos →</span>
               </a>
             </li>
           );

@@ -16,7 +16,7 @@ const formato = new Intl.DateTimeFormat('es-PE', { day: 'numeric', month: 'long'
 >
   <Migas items={[{ nombre: 'Recursos' }]} />
 
-  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+  <header class="border-b border-gris-100 bg-gradient-to-b from-gris-50 to-white">
     <div class="contenedor py-12 sm:py-16">
       <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Recursos técnicos</h1>
       <p class="prosa mt-4 max-w-3xl text-lg">
@@ -34,15 +34,15 @@ const formato = new Intl.DateTimeFormat('es-PE', { day: 'numeric', month: 'long'
         <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {articulos.map((a) => (
             <li>
-              <article class="flex h-full flex-col rounded-card border border-marino-100 p-6 transition-shadow hover:shadow-lg">
-                <p class="text-xs font-bold uppercase tracking-wider text-coral-600">{a.data.categoria}</p>
+              <article class="flex h-full flex-col rounded-card border border-gris-100 p-6 transition-shadow hover:shadow-lg">
+                <p class="text-xs font-bold uppercase tracking-wider text-granate-500">{a.data.categoria}</p>
                 <h2 class="mt-2 text-lg font-semibold leading-snug">
-                  <a href={`/blog/${a.id}`} class="hover:text-marino-600">
+                  <a href={`/blog/${a.id}`} class="hover:text-granate-500">
                     {a.data.titulo}
                   </a>
                 </h2>
                 <p class="prosa mt-3 text-sm">{a.data.descripcion}</p>
-                <p class="mt-auto pt-5 text-xs text-marino-500">
+                <p class="mt-auto pt-5 text-xs text-gris-500">
                   <time datetime={a.data.fecha.toISOString()}>{formato.format(a.data.fecha)}</time>
                 </p>
               </article>

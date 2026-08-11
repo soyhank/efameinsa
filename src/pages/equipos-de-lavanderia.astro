@@ -38,7 +38,7 @@ const schema = [
 >
   <Migas items={[{ nombre: 'Equipos de lavandería' }]} />
 
-  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+  <header class="border-b border-gris-100 bg-gradient-to-b from-gris-50 to-white">
     <div class="contenedor py-12 sm:py-16">
       <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Catálogo de equipos de lavandería</h1>
       <p class="prosa mt-4 max-w-3xl text-lg">
@@ -61,7 +61,7 @@ const schema = [
               <li>
                 <a
                   href={`/${c.slug}`}
-                  class="flex h-full gap-4 rounded-card border border-marino-100 p-4 transition-colors hover:border-marino-600 hover:bg-marino-50"
+                  class="flex h-full gap-4 rounded-card border border-gris-100 p-4 transition-colors hover:border-granate-500 hover:bg-gris-50"
                 >
                   {r.portada && (
                     <img
@@ -75,8 +75,8 @@ const schema = [
                     />
                   )}
                   <div>
-                    <h3 class="text-base font-semibold text-marino-800">{c.h1}</h3>
-                    <p class="mt-1 text-xs text-marino-500">
+                    <h3 class="text-base font-semibold text-gris-800">{c.h1}</h3>
+                    <p class="mt-1 text-xs text-gris-500">
                       {r.total} modelos{r.rango ? ` · ${r.rango}` : ''}
                     </p>
                   </div>

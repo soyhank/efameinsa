@@ -26,12 +26,14 @@ const { contextoWhatsApp, ...seo } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preload" href="/fonts/lg-smart-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/lg-smart-bold.woff2" as="font" type="font/woff2" crossorigin />
     <SEO {...seo} />
   </head>
   <body class="flex min-h-screen flex-col">
     <a
       href="#contenido"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-marino-800 focus:px-4 focus:py-2 focus:text-white"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-gris-800 focus:px-4 focus:py-2 focus:text-white"
     >
       Saltar al contenido
     </a>
