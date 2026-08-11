@@ -49,8 +49,8 @@ export function construirRedirecciones(): Record<string, string> {
     '/equipos-de-lavanderia/maquinaria-para-lavanderia-tipo-servicio': '/maquinas-lavadoras-para-industria-comercial',
     '/servicios-lavanderia': '/soporte-tecnico',
     '/equipos-de-lavanderia/servicios-lavanderia': '/soporte-tecnico',
-    '/proyectos': '/servicios/asesoria-en-proyectos-de-lavanderia',
-    '/equipos-de-lavanderia/proyectos': '/servicios/asesoria-en-proyectos-de-lavanderia',
+    '/proyectos': '/#proyectos',
+    '/equipos-de-lavanderia/proyectos': '/#proyectos',
     // Devolvía 302 al inicio en el sitio anterior; la intención real es la línea comercial
     '/maquinas-lavadoras-para-industria-alimentaria': '/maquinas-lavadoras-para-agroindustria',
     '/equipos-de-lavanderia/maquinas-lavadoras-para-industria-alimentaria': '/maquinas-lavadoras-para-agroindustria',
