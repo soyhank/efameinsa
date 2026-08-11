@@ -20,7 +20,7 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinas-lavadoras-para-industria-hotelera',
     nombre: 'Hotelería',
-    imagen: '/img/productos/calandria-de-planchado-g14-25-gmp/principal.webp',
+    imagen: '/img/sectores/hoteleria.webp',
     titulo: 'Equipos de lavandería para hoteles',
     title: 'Lavadoras Industriales para Hoteles | Lavandería Hotelera | Efameinsa',
     description:
@@ -92,7 +92,7 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinas-lavadoras-para-industria-minera',
     nombre: 'Minería',
-    imagen: '/img/productos/lavadora-industrial-uw160-unimac/principal.webp',
+    imagen: '/img/sectores/mineria.webp',
     titulo: 'Lavandería para campamentos mineros',
     title: 'Equipos de Lavandería Industrial para Minería y Campamentos | Efameinsa',
     description:
@@ -127,7 +127,7 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinas-lavadoras-para-industria-textil',
     nombre: 'Textil',
-    imagen: '/img/productos/centrifuga-hidroextractora-lc100-efamein/principal.webp',
+    imagen: '/img/sectores/textil.webp',
     titulo: 'Maquinaria para la industria textil',
     title: 'Lavadoras Teñidoras y Maquinaria Textil Industrial | Efameinsa',
     description:
