@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import Migas from '../components/Migas.astro';
+import FormularioCotizacion from '../components/FormularioCotizacion.astro';
+import { SITE_URL } from '../data/sitio';
+
+const puntos = [
+  {
+    titulo: 'Esterilización por vapor saturado',
+    texto:
+      'Ciclos de vapor a presión con control de temperatura y tiempo de exposición, el método de referencia para material quirúrgico e instrumental.',
+  },
+  {
+    titulo: 'Registro del ciclo',
+    texto:
+      'Registro de los parámetros de cada ciclo, necesario para sustentar el proceso ante auditoría sanitaria.',
+  },
+  {
+    titulo: 'Integración con la lavandería',
+    texto:
+      'Si ya cuenta con caldera para su lavandería hospitalaria, evaluamos aprovechar esa capacidad de vapor y evitar un equipo redundante.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Equipos autoclaves para esterilización',
+    description: 'Autoclaves de esterilización por vapor para clínicas, hospitales y laboratorios en Perú.',
+    url: `${SITE_URL}/equipos-autoclaves`,
+    provider: { '@id': `${SITE_URL}/#organizacion` },
+  },
+];
+---
+
+<Base
+  title="Equipos Autoclaves de Esterilización para Clínicas y Hospitales | Efameinsa"
+  description="Autoclaves de esterilización por vapor para clínicas, hospitales y laboratorios en Perú, con servicio técnico e instalación a cargo de Efameinsa."
+  ruta="/equipos-autoclaves"
+  schema={schema}
+  contextoWhatsApp="equipos autoclaves"
+>
+  <Migas items={[{ nombre: 'Servicios', ruta: '/servicios' }, { nombre: 'Equipos autoclaves' }]} />
+
+  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+    <div class="contenedor py-12 sm:py-16">
+      <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Equipos autoclaves</h1>
+      <p class="prosa mt-4 max-w-3xl text-lg">
+        Esterilización por vapor para el sector salud, con el mismo servicio técnico que respalda nuestras lavanderías
+        hospitalarias.
+      </p>
+    </div>
+  </header>
+
+  <div class="contenedor py-12">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
+      <div>
+        <ul class="space-y-6">
+          {
+            puntos.map((p) => (
+              <li class="rounded-card border border-marino-100 p-6">
+                <h2 class="text-lg font-semibold">{p.titulo}</h2>
+                <p class="prosa mt-2 text-sm">{p.texto}</p>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="prosa mt-8">
+          ¿Está equipando el área de esterilización junto con la lavandería? Vea también nuestras
+          <a href="/lavadoras-con-barreras-sanitarias-en-venta-lima-peru" class="font-semibold text-marino-600 hover:underline">
+            lavadoras con barrera sanitaria
+          </a>
+          y el enfoque para
+          <a href="/maquinas-lavadoras-para-industria-hospitalaria" class="font-semibold text-marino-600 hover:underline">
+            lavandería hospitalaria
+          </a>.
+        </p>
+      </div>
+
+      <aside class="lg:sticky lg:top-32 lg:self-start">
+        <FormularioCotizacion contexto="Equipos autoclaves" titulo="Cotizar autoclaves" compacto />
+      </aside>
+    </div>
+  </div>
+</Base>

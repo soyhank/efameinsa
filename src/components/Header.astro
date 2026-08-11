@@ -1,0 +1,216 @@
+---
+import { EMPRESA, enlaceWhatsApp } from '../data/sitio';
+import { lineas } from '../data/catalogo';
+import { sectores } from '../data/sectores';
+
+const rutaActual = Astro.url.pathname;
+const activa = (r: string) => rutaActual === r || (r !== '/' && rutaActual.startsWith(r));
+---
+
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+  <!-- Barra de contacto: el teléfono es el canal principal en venta B2B de capital -->
+  <div class="bg-marino-800 text-marino-100">
+    <div class="contenedor flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2 text-xs sm:text-sm">
+      <p class="hidden sm:block">{EMPRESA.certificaciones.join(' · ')} · Fabricación propia desde 2002</p>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
+        <a href={`tel:+51${EMPRESA.telefonos[0].replace(/\D/g, '')}`} class="hover:text-white">
+          <span aria-hidden="true">☎</span> {EMPRESA.telefonos[0]}
+        </a>
+        <a href={`mailto:${EMPRESA.email}`} class="hidden hover:text-white md:inline">
+          <span aria-hidden="true">✉</span> {EMPRESA.email}
+        </a>
+        <a href={enlaceWhatsApp()} target="_blank" rel="noopener" class="font-medium text-marino-300 hover:text-white">
+          WhatsApp {EMPRESA.celular}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="contenedor flex items-center justify-between gap-4 py-3" aria-label="Principal">
+    <a href="/" class="shrink-0">
+      <img
+        src="/img/marca/logo-header.png"
+        alt={`${EMPRESA.nombre} — equipos de lavandería industrial`}
+        width="298"
+        height="48"
+        class="h-9 w-auto sm:h-11"
+      />
+    </a>
+
+    <ul class="hidden items-center gap-1 lg:flex">
+      <li class="group relative">
+        <a
+          href="/equipos-de-lavanderia"
+          class:list={[
+            'flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+            activa('/equipos-de-lavanderia') ? 'text-marino-600' : 'text-marino-800 hover:text-marino-600',
+          ]}
+          aria-haspopup="true"
+        >
+          Productos <span class="text-[0.6rem]" aria-hidden="true">▼</span>
+        </a>
+        <!-- Megamenú: las 17 categorías son la columna vertebral del SEO, deben ser enlazables desde toda página -->
+        <div
+          class="invisible absolute left-1/2 top-full w-[52rem] -translate-x-1/2 pt-1 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+        >
+          <div class="grid grid-cols-2 gap-6 rounded-xl border border-marino-100 bg-white p-6 shadow-xl">
+            <div>
+              <p class="mb-2 border-b border-marino-100 pb-2 text-xs font-bold uppercase tracking-wider text-coral-600">
+                Línea industrial
+              </p>
+              <ul class="space-y-1">
+                {
+                  lineas.industrial.map((c) => (
+                    <li>
+                      <a href={`/${c.slug}`} class="block rounded px-2 py-1 text-sm text-marino-700 hover:bg-marino-50 hover:text-marino-600">
+                        {c.h1}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+            <div>
+              <p class="mb-2 border-b border-marino-100 pb-2 text-xs font-bold uppercase tracking-wider text-coral-600">
+                Línea comercial
+              </p>
+              <ul class="space-y-1">
+                {
+                  lineas.comercial.map((c) => (
+                    <li>
+                      <a href={`/${c.slug}`} class="block rounded px-2 py-1 text-sm text-marino-700 hover:bg-marino-50 hover:text-marino-600">
+                        {c.h1}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+              <a href="/marcas" class="mt-4 inline-block rounded px-2 py-1 text-sm font-medium text-marino-600 hover:underline">
+                Ver todas las marcas →
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="group relative">
+        <a
+          href="/sectores"
+          class:list={[
+            'flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+            activa('/sectores') ? 'text-marino-600' : 'text-marino-800 hover:text-marino-600',
+          ]}
+          aria-haspopup="true"
+        >
+          Sectores <span class="text-[0.6rem]" aria-hidden="true">▼</span>
+        </a>
+        <div
+          class="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 pt-1 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+        >
+          <ul class="rounded-xl border border-marino-100 bg-white p-3 shadow-xl">
+            {
+              sectores.map((s) => (
+                <li>
+                  <a href={`/${s.slug}`} class="block rounded px-3 py-2 text-sm text-marino-700 hover:bg-marino-50 hover:text-marino-600">
+                    {s.nombre}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <a
+          href="/servicios"
+          class:list={[
+            'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
+            activa('/servicios') ? 'text-marino-600' : 'text-marino-800 hover:text-marino-600',
+          ]}>Servicios</a
+        >
+      </li>
+      <li>
+        <a
+          href="/blog"
+          class:list={[
+            'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
+            activa('/blog') ? 'text-marino-600' : 'text-marino-800 hover:text-marino-600',
+          ]}>Recursos</a
+        >
+      </li>
+      <li>
+        <a
+          href="/nosotros"
+          class:list={[
+            'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
+            activa('/nosotros') ? 'text-marino-600' : 'text-marino-800 hover:text-marino-600',
+          ]}>Nosotros</a
+        >
+      </li>
+    </ul>
+
+    <div class="flex items-center gap-2">
+      <a
+        href="/cotizar"
+        class="hidden rounded-lg bg-coral-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-coral-600 sm:inline-block"
+      >
+        Solicitar cotización
+      </a>
+      <button
+        type="button"
+        id="abrir-menu"
+        class="rounded-md p-2 text-marino-800 lg:hidden"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="menu-movil"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Menú móvil -->
+  <div id="menu-movil" class="hidden border-t border-marino-100 bg-white lg:hidden">
+    <div class="contenedor max-h-[75vh] overflow-y-auto py-4">
+      <a href="/cotizar" class="mb-4 block rounded-lg bg-coral-500 px-4 py-3 text-center font-semibold text-white">
+        Solicitar cotización
+      </a>
+      <details class="border-b border-marino-100 py-2">
+        <summary class="cursor-pointer py-1 font-medium text-marino-800">Línea industrial</summary>
+        <ul class="mt-2 space-y-1 pl-3">
+          {lineas.industrial.map((c) => <li><a href={`/${c.slug}`} class="block py-1.5 text-sm text-marino-700">{c.h1}</a></li>)}
+        </ul>
+      </details>
+      <details class="border-b border-marino-100 py-2">
+        <summary class="cursor-pointer py-1 font-medium text-marino-800">Línea comercial</summary>
+        <ul class="mt-2 space-y-1 pl-3">
+          {lineas.comercial.map((c) => <li><a href={`/${c.slug}`} class="block py-1.5 text-sm text-marino-700">{c.h1}</a></li>)}
+        </ul>
+      </details>
+      <details class="border-b border-marino-100 py-2">
+        <summary class="cursor-pointer py-1 font-medium text-marino-800">Sectores</summary>
+        <ul class="mt-2 space-y-1 pl-3">
+          {sectores.map((s) => <li><a href={`/${s.slug}`} class="block py-1.5 text-sm text-marino-700">{s.nombre}</a></li>)}
+        </ul>
+      </details>
+      <a href="/servicios" class="block border-b border-marino-100 py-3 font-medium text-marino-800">Servicios</a>
+      <a href="/marcas" class="block border-b border-marino-100 py-3 font-medium text-marino-800">Marcas</a>
+      <a href="/blog" class="block border-b border-marino-100 py-3 font-medium text-marino-800">Recursos</a>
+      <a href="/nosotros" class="block border-b border-marino-100 py-3 font-medium text-marino-800">Nosotros</a>
+      <a href="/contactenos" class="block py-3 font-medium text-marino-800">Contacto</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const boton = document.getElementById('abrir-menu');
+  const menu = document.getElementById('menu-movil');
+  boton?.addEventListener('click', () => {
+    const abierto = menu?.classList.toggle('hidden') === false;
+    boton.setAttribute('aria-expanded', String(abierto));
+    boton.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+  });
+</script>

@@ -1,0 +1,99 @@
+---
+import Base from '../layouts/Base.astro';
+import Migas from '../components/Migas.astro';
+import FormularioCotizacion from '../components/FormularioCotizacion.astro';
+import { EMPRESA, SITE_URL } from '../data/sitio';
+
+const servicios = [
+  {
+    titulo: 'Mantenimiento preventivo',
+    texto:
+      'Programa periódico de revisión de rodamientos, sellos, correas, válvulas y sistema de control. Es lo que evita la parada no planificada en plena temporada.',
+  },
+  {
+    titulo: 'Mantenimiento correctivo',
+    texto:
+      'Diagnóstico y reparación en sitio de lavadoras, secadoras, calandrias y calderas, sean de nuestra fabricación o de las marcas que representamos.',
+  },
+  {
+    titulo: 'Repuestos originales',
+    texto:
+      'Stock en Lima de repuestos para la línea Efamein y para las marcas representadas, de modo que una avería no dependa de un tiempo de importación.',
+  },
+  {
+    titulo: 'Instalación y puesta en marcha',
+    texto:
+      'Montaje, conexión a servicios, calibración de programas de lavado y capacitación al personal operativo, en Lima y provincias.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Servicio técnico de equipos de lavandería industrial',
+    description: 'Mantenimiento preventivo y correctivo, repuestos e instalación de equipos de lavandería en Perú.',
+    url: `${SITE_URL}/soporte-tecnico`,
+    areaServed: { '@type': 'Country', name: 'Perú' },
+    provider: { '@id': `${SITE_URL}/#organizacion` },
+  },
+];
+---
+
+<Base
+  title="Servicio Técnico y Repuestos de Lavandería Industrial | Efameinsa"
+  description="Mantenimiento preventivo y correctivo de lavadoras, secadoras, calandrias y calderas industriales en Perú. Repuestos originales con stock en Lima."
+  ruta="/soporte-tecnico"
+  schema={schema}
+  contextoWhatsApp="servicio técnico"
+>
+  <Migas items={[{ nombre: 'Servicios', ruta: '/servicios' }, { nombre: 'Soporte técnico' }]} />
+
+  <header class="bg-marino-800 text-white">
+    <div class="contenedor py-14 sm:py-20">
+      <h1 class="max-w-3xl text-3xl font-bold text-white sm:text-4xl lg:text-5xl">Servicio técnico y repuestos</h1>
+      <p class="mt-6 max-w-3xl text-lg leading-relaxed text-marino-100">
+        Una lavadora parada detiene el hotel, la clínica o el campamento entero. Por eso mantenemos técnicos propios y
+        stock de repuestos en Lima, en lugar de tercerizar el soporte.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={`tel:+51${EMPRESA.telefonos[0].replace(/\D/g, '')}`}
+          class="rounded-lg bg-coral-500 px-6 py-3 font-semibold text-white hover:bg-coral-600"
+        >
+          Reportar una avería · {EMPRESA.telefonos[0]}
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="contenedor py-14">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
+      <div>
+        <h2 class="text-2xl font-bold">Qué cubrimos</h2>
+        <ul class="mt-8 grid gap-6 sm:grid-cols-2">
+          {
+            servicios.map((s) => (
+              <li class="rounded-card border border-marino-100 p-6">
+                <h3 class="text-lg font-semibold">{s.titulo}</h3>
+                <p class="prosa mt-2 text-sm">{s.texto}</p>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-10 rounded-card border-l-4 border-coral-500 bg-coral-500/5 p-6">
+          <h2 class="text-lg font-semibold">Atención en provincias</h2>
+          <p class="prosa mt-2 text-sm">
+            Atendemos instalaciones fuera de Lima —campamentos mineros, hoteles regionales y plantas agroindustriales—
+            coordinando la visita técnica junto con el envío de repuestos, para resolver en un solo viaje.
+          </p>
+        </div>
+      </div>
+
+      <aside class="lg:sticky lg:top-32 lg:self-start">
+        <FormularioCotizacion contexto="Servicio técnico" titulo="Solicitar servicio técnico" compacto />
+      </aside>
+    </div>
+  </div>
+</Base>

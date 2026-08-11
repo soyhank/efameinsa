@@ -1,0 +1,90 @@
+---
+import { EMPRESA, SITE_URL } from '../data/sitio';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Ruta canónica sin dominio, p. ej. "/lavadoras-industriales-en-venta-lima-peru" */
+  ruta: string;
+  imagen?: string;
+  tipo?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+  /** Bloques JSON-LD adicionales propios de la página */
+  schema?: Record<string, unknown>[];
+}
+
+const { title, description, ruta, imagen, tipo = 'website', noindex = false, schema = [] } = Astro.props;
+
+const canonical = new URL(ruta, SITE_URL).href;
+const ogImagen = new URL(imagen ?? '/img/marca/logo-header.png', SITE_URL).href;
+
+const organizacion = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${SITE_URL}/#organizacion`,
+  name: EMPRESA.nombre,
+  url: SITE_URL,
+  logo: new URL('/img/marca/logo-header.png', SITE_URL).href,
+  description: EMPRESA.descripcion,
+  email: EMPRESA.email,
+  telephone: EMPRESA.telefonos[0],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: EMPRESA.direccion.calle,
+    addressLocality: EMPRESA.direccion.ciudad,
+    addressRegion: EMPRESA.direccion.region,
+    postalCode: EMPRESA.direccion.codigoPostal,
+    addressCountry: EMPRESA.direccion.pais,
+  },
+  sameAs: Object.values(EMPRESA.redes),
+};
+
+const negocioLocal = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE_URL}/#negocio`,
+  name: EMPRESA.nombre,
+  image: new URL('/img/marca/logo-header.png', SITE_URL).href,
+  url: SITE_URL,
+  telephone: EMPRESA.telefonos[0],
+  email: EMPRESA.email,
+  priceRange: '$$$',
+  address: organizacion.address,
+  areaServed: { '@type': 'Country', name: 'Perú' },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Saturday'], opens: '08:00', closes: '12:00' },
+  ],
+};
+
+const bloques = [organizacion, negocioLocal, ...schema];
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+{!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />}
+
+<meta property="og:type" content={tipo === 'product' ? 'website' : tipo} />
+<meta property="og:site_name" content={EMPRESA.nombre} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImagen} />
+<meta property="og:locale" content="es_PE" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImagen} />
+
+<meta name="geo.region" content="PE-LIM" />
+<meta name="geo.placename" content="Lima" />
+
+{bloques.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}

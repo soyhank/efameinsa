@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+import Migas from '../components/Migas.astro';
+import { EMPRESA } from '../data/sitio';
+
+const actualizacion = '10 de agosto de 2026';
+---
+
+<Base
+  title="Política de Privacidad | Efameinsa S.A."
+  description="Política de privacidad y tratamiento de datos personales de Efameinsa S.A. conforme a la Ley 29733 de Protección de Datos Personales del Perú."
+  ruta="/politica-de-privacidad"
+>
+  <Migas items={[{ nombre: 'Política de privacidad' }]} />
+
+  <article class="contenedor py-12">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="text-3xl font-bold sm:text-4xl">Política de privacidad</h1>
+      <p class="mt-2 text-sm text-marino-500">Última actualización: {actualizacion}</p>
+
+      <div class="prosa mt-8 space-y-6">
+        <p>
+          Dentro de la estrategia comercial de {EMPRESA.razonSocial} se incluyen acciones digitales que involucran el
+          registro voluntario de personas interesadas en nuestros productos y servicios. Por ello explicamos aquí cómo
+          tratamos su información, conforme a la Ley N.º 29733, Ley de Protección de Datos Personales del Perú, y su
+          reglamento.
+        </p>
+
+        <section>
+          <h2 class="text-xl font-bold text-marino-800">Datos que solicitamos</h2>
+          <p class="mt-2">
+            Recogemos únicamente los datos necesarios para atender su consulta o cotización: nombre y apellido, empresa,
+            teléfono, correo electrónico, sector de actividad y el detalle de su requerimiento. No solicitamos datos
+            sensibles ni información financiera a través de este sitio.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-marino-800">Finalidad del tratamiento</h2>
+          <p class="mt-2">Utilizamos sus datos para:</p>
+          <ul class="mt-2 list-disc space-y-1 pl-6">
+            <li>Responder su solicitud de cotización, información o servicio técnico.</li>
+            <li>Elaborar y remitir propuestas comerciales adaptadas a su requerimiento.</li>
+            <li>Dar seguimiento a la atención y, cuando corresponda, a la postventa.</li>
+            <li>Enviarle información sobre productos y servicios relacionados, si usted lo autoriza.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-marino-800">Conservación y seguridad</h2>
+          <p class="mt-2">
+            Sus datos se conservan en el banco de datos de {EMPRESA.razonSocial} mientras subsista la relación comercial
+            o el interés legítimo derivado de su consulta. Aplicamos medidas técnicas y organizativas razonables para
+            evitar el acceso no autorizado, la pérdida o la alteración de la información.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-marino-800">Transferencia a terceros</h2>
+          <p class="mt-2">
+            No vendemos ni cedemos su información a terceros con fines comerciales. Sólo compartimos datos con
+            proveedores que nos prestan servicios de infraestructura tecnológica y de correo, bajo obligación de
+            confidencialidad, o cuando una autoridad competente lo requiera legalmente.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-marino-800">Derechos ARCO</h2>
+          <p class="mt-2">
+            Usted puede ejercer en cualquier momento sus derechos de acceso, rectificación, cancelación y oposición sobre
+            sus datos personales, así como revocar el consentimiento otorgado. Para hacerlo, escríbanos a
+            <a href={`mailto:${EMPRESA.email}`} class="font-semibold text-marino-600 hover:underline">{EMPRESA.email}</a>
+            o llámenos al {EMPRESA.telefonos[0]}, indicando su solicitud y adjuntando un documento que acredite su
+            identidad.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-marino-800">Datos de navegación</h2>
+          <p class="mt-2">
+            Este sitio puede utilizar cookies y herramientas de analítica para entender cómo se navega el catálogo y
+            mejorar la experiencia. Esa información se trata de forma agregada y no permite identificarle
+            individualmente. Puede bloquear las cookies desde la configuración de su navegador.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-marino-800">Cambios en esta política</h2>
+          <p class="mt-2">
+            Podemos actualizar esta política para reflejar cambios normativos o de nuestros procesos. Publicaremos la
+            versión vigente en esta misma página, indicando la fecha de última actualización.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold text-marino-800">Responsable del tratamiento</h2>
+          <address class="mt-2 not-italic">
+            {EMPRESA.razonSocial}<br />
+            {EMPRESA.direccion.calle}, {EMPRESA.direccion.distrito}, {EMPRESA.direccion.ciudad}<br />
+            <a href={`mailto:${EMPRESA.email}`} class="font-semibold text-marino-600 hover:underline">{EMPRESA.email}</a> ·
+            {EMPRESA.telefonos[0]}
+          </address>
+        </section>
+      </div>
+    </div>
+  </article>
+</Base>

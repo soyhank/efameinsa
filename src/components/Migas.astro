@@ -1,0 +1,42 @@
+---
+import { SITE_URL } from '../data/sitio';
+
+interface Props {
+  items: { nombre: string; ruta?: string }[];
+}
+const { items } = Astro.props;
+
+const todos = [{ nombre: 'Inicio', ruta: '/' }, ...items];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: todos.map((it, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: it.nombre,
+    ...(it.ruta ? { item: new URL(it.ruta, SITE_URL).href } : {}),
+  })),
+};
+---
+
+<nav aria-label="Ruta de navegación" class="border-b border-marino-100 bg-marino-50">
+  <div class="contenedor py-3">
+    <ol class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-marino-600">
+      {
+        todos.map((it, i) => (
+          <li class="flex items-center gap-2">
+            {i > 0 && <span aria-hidden="true" class="text-marino-300">/</span>}
+            {it.ruta ? (
+              <a href={it.ruta} class="hover:text-marino-600 hover:underline">{it.nombre}</a>
+            ) : (
+              <span class="font-medium text-marino-800" aria-current="page">{it.nombre}</span>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

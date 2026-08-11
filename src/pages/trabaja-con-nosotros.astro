@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import Migas from '../components/Migas.astro';
+import { EMPRESA } from '../data/sitio';
+
+const perfiles = [
+  'Técnicos electromecánicos con experiencia en equipos industriales',
+  'Soldadores y armadores para planta de fabricación',
+  'Asesores comerciales del rubro industrial B2B',
+  'Personal de almacén y logística',
+];
+---
+
+<Base
+  title="Trabaja con Nosotros | Efameinsa S.A."
+  description="Oportunidades laborales en Efameinsa S.A., fabricante de equipos de lavandería industrial en Lima. Envíe su currículum a nuestro equipo de recursos humanos."
+  ruta="/trabaja-con-nosotros"
+>
+  <Migas items={[{ nombre: 'Trabaja con nosotros' }]} />
+
+  <div class="contenedor py-12">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="text-3xl font-bold sm:text-4xl">Trabaja con nosotros</h1>
+      <p class="prosa mt-4 text-lg">
+        Fabricamos en Lima y damos servicio en todo el Perú. Buscamos personas que quieran especializarse en un rubro
+        técnico con demanda sostenida.
+      </p>
+
+      <h2 class="mt-10 text-xl font-bold">Perfiles que solemos buscar</h2>
+      <ul class="mt-4 space-y-2">
+        {
+          perfiles.map((p) => (
+            <li class="flex gap-3 text-marino-700">
+              <span class="text-marino-400" aria-hidden="true">
+                ▸
+              </span>
+              {p}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-10 rounded-card bg-marino-50 p-6">
+        <h2 class="text-xl font-bold">Envíe su currículum</h2>
+        <p class="prosa mt-2 text-sm">
+          Escríbanos a <a href={`mailto:${EMPRESA.email}?subject=Postulación`} class="font-semibold text-marino-600 hover:underline">{EMPRESA.email}</a>
+          con el asunto «Postulación», indicando el puesto de interés y adjuntando su CV en PDF. Revisamos todas las
+          postulaciones y contactamos a quienes calzan con una vacante abierta.
+        </p>
+        <a
+          href={`mailto:${EMPRESA.email}?subject=Postulaci%C3%B3n`}
+          class="mt-5 inline-block rounded-lg bg-coral-500 px-6 py-3 font-semibold text-white hover:bg-coral-600"
+        >
+          Enviar mi CV
+        </a>
+      </div>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+import Migas from '../../components/Migas.astro';
+import CTABloque from '../../components/CTABloque.astro';
+import { marcasConSlug, productosDeMarca } from '../../data/catalogo';
+
+const logo = (nombre: string) => {
+  const archivo = nombre.toLowerCase().replace(/\s+/g, '');
+  const disponibles = ['unimac', 'primus', 'girbau', 'adc', 'milnor', 'gmp', 'lg', 'sailstar', 'bimap'];
+  return disponibles.includes(archivo) ? `/img/marcas/${archivo}.png` : null;
+};
+---
+
+<Base
+  title="Marcas de Equipos de Lavandería que Representamos | Efameinsa"
+  description="UniMac, Primus, Girbau, ADC, Milnor, GMP, LG, Sailstar y nuestra línea propia Efamein. Equipos de lavandería industrial con respaldo técnico en Perú."
+  ruta="/marcas"
+>
+  <Migas items={[{ nombre: 'Marcas' }]} />
+
+  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+    <div class="contenedor py-12 sm:py-16">
+      <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Marcas que representamos</h1>
+      <p class="prosa mt-4 max-w-3xl text-lg">
+        Combinamos nuestra línea de fabricación propia, <strong>Efamein</strong>, con la representación de fabricantes
+        internacionales. Todas comparten el mismo servicio técnico y disponibilidad de repuestos en Lima.
+      </p>
+    </div>
+  </header>
+
+  <div class="contenedor py-12">
+    <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        marcasConSlug.map((m) => {
+          const portada = productosDeMarca(m.nombre).find((p) => p.imagenLocal)?.imagenLocal;
+          const src = logo(m.nombre);
+          return (
+            <li>
+              <a
+                href={`/marcas/${m.slug}`}
+                class="flex h-full flex-col rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600 hover:bg-marino-50"
+              >
+                <div class="flex h-12 items-center">
+                  {src ? (
+                    <img src={src} alt={m.nombre} height="40" loading="lazy" decoding="async" class="h-9 w-auto" />
+                  ) : (
+                    <span class="text-xl font-bold text-marino-800">{m.nombre}</span>
+                  )}
+                </div>
+                <p class="mt-4 text-sm text-marino-600">{m.total} equipos en catálogo</p>
+                {portada && (
+                  <img
+                    src={portada}
+                    alt=""
+                    width="700"
+                    height="646"
+                    loading="lazy"
+                    decoding="async"
+                    class="mt-4 h-32 w-full object-contain"
+                  />
+                )}
+                <span class="mt-auto pt-4 text-sm font-semibold text-marino-600">Ver equipos →</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+
+  <CTABloque />
+</Base>

@@ -1,0 +1,26 @@
+---
+/**
+ * Ruta única para los tres tipos de página que el sitio anterior servía en la raíz:
+ * categorías, fichas de producto y sectores. Mantenerlas aquí es lo que permite
+ * conservar exactamente las URLs ya posicionadas en Google.
+ */
+import PaginaCategoria from '../components/paginas/PaginaCategoria.astro';
+import PaginaProducto from '../components/paginas/PaginaProducto.astro';
+import PaginaSector from '../components/paginas/PaginaSector.astro';
+import { categorias, productos } from '../data/catalogo';
+import { sectores } from '../data/sectores';
+
+export function getStaticPaths() {
+  return [
+    ...categorias.map((c) => ({ params: { slug: c.slug }, props: { tipo: 'categoria' as const, slug: c.slug } })),
+    ...productos.map((p) => ({ params: { slug: p.slug }, props: { tipo: 'producto' as const, slug: p.slug } })),
+    ...sectores.map((s) => ({ params: { slug: s.slug }, props: { tipo: 'sector' as const, slug: s.slug } })),
+  ];
+}
+
+const { tipo, slug } = Astro.props;
+---
+
+{tipo === 'categoria' && <PaginaCategoria slug={slug} />}
+{tipo === 'producto' && <PaginaProducto slug={slug} />}
+{tipo === 'sector' && <PaginaSector slug={slug} />}

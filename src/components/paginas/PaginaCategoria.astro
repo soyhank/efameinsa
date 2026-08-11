@@ -1,0 +1,163 @@
+---
+import Base from '../../layouts/Base.astro';
+import Migas from '../Migas.astro';
+import TarjetaProducto from '../TarjetaProducto.astro';
+import FormularioCotizacion from '../FormularioCotizacion.astro';
+import CTABloque from '../CTABloque.astro';
+import { buscarCategoria, productosDe, capacidadKg, categorias } from '../../data/catalogo';
+import { sectores } from '../../data/sectores';
+import { SITE_URL } from '../../data/sitio';
+
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+
+const categoria = buscarCategoria(slug)!;
+const items = productosDe(slug);
+
+// Ordenar por capacidad da al listado una lógica de lectura: de la máquina chica a la grande
+const ordenados = [...items].sort((a, b) => (capacidadKg(a) ?? 9999) - (capacidadKg(b) ?? 9999));
+
+const marcasEnCategoria = [...new Set(items.map((p) => p.marca).filter(Boolean))];
+const capacidades = items.map(capacidadKg).filter((k): k is number => k !== null);
+const rangoKg = capacidades.length ? { min: Math.min(...capacidades), max: Math.max(...capacidades) } : null;
+
+const relacionadas = categorias.filter((c) => c.slug !== slug && c.linea === categoria.linea).slice(0, 6);
+const sectoresRelacionados = sectores.filter((s) => s.categorias.includes(slug));
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: categoria.h1,
+    description: categoria.description,
+    url: `${SITE_URL}/${slug}`,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: ordenados.length,
+      itemListElement: ordenados.slice(0, 30).map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: p.nombre,
+        url: `${SITE_URL}/${p.slug}`,
+      })),
+    },
+  },
+];
+---
+
+<Base
+  title={categoria.title}
+  description={categoria.description || `${categoria.h1} en venta en Lima, Perú. ${items.length} modelos disponibles.`}
+  ruta={`/${slug}`}
+  imagen={ordenados[0]?.imagenLocal ?? undefined}
+  schema={schema}
+  contextoWhatsApp={categoria.h1}
+>
+  <Migas
+    items={[
+      { nombre: 'Equipos de lavandería', ruta: '/equipos-de-lavanderia' },
+      { nombre: categoria.h1 },
+    ]}
+  />
+
+  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+    <div class="contenedor py-10 sm:py-14">
+      <p class="mb-2 text-xs font-bold uppercase tracking-wider text-coral-600">
+        Línea {categoria.linea}
+      </p>
+      <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">{categoria.h1}</h1>
+      {categoria.intro && <p class="prosa mt-4 max-w-3xl text-lg">{categoria.intro}</p>}
+
+      <dl class="mt-8 flex flex-wrap gap-x-10 gap-y-4">
+        <div>
+          <dt class="text-xs uppercase tracking-wide text-marino-500">Modelos</dt>
+          <dd class="text-2xl font-bold text-marino-800">{items.length}</dd>
+        </div>
+        {
+          rangoKg && (
+            <div>
+              <dt class="text-xs uppercase tracking-wide text-marino-500">Capacidad</dt>
+              <dd class="text-2xl font-bold text-marino-800">{rangoKg.min} – {rangoKg.max} kg</dd>
+            </div>
+          )
+        }
+        {
+          marcasEnCategoria.length > 0 && (
+            <div>
+              <dt class="text-xs uppercase tracking-wide text-marino-500">Marcas</dt>
+              <dd class="text-sm font-medium text-marino-800 pt-2">{marcasEnCategoria.join(' · ')}</dd>
+            </div>
+          )
+        }
+      </dl>
+    </div>
+  </header>
+
+  <div class="contenedor py-12">
+    <div class="grid gap-10 lg:grid-cols-[1fr_22rem]">
+      <div>
+        <h2 class="sr-only">Modelos disponibles</h2>
+        <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          {ordenados.map((p, i) => <TarjetaProducto producto={p} prioritaria={i < 3} />)}
+        </div>
+      </div>
+
+      <aside class="lg:sticky lg:top-32 lg:self-start">
+        <FormularioCotizacion
+          contexto={categoria.h1}
+          titulo="Cotice esta línea"
+          compacto
+        />
+      </aside>
+    </div>
+  </div>
+
+  {
+    sectoresRelacionados.length > 0 && (
+      <section class="border-t border-marino-100 bg-marino-50 py-12">
+        <div class="contenedor">
+          <h2 class="text-xl font-bold">¿Para qué sector lo necesita?</h2>
+          <p class="prosa mt-2 max-w-2xl text-sm">
+            La configuración correcta depende del tipo de prenda y del volumen diario. Vea el enfoque por rubro.
+          </p>
+          <ul class="mt-6 flex flex-wrap gap-3">
+            {sectoresRelacionados.map((s) => (
+              <li>
+                <a
+                  href={`/${s.slug}`}
+                  class="inline-block rounded-lg border border-marino-200 bg-white px-4 py-2.5 text-sm font-medium text-marino-700 transition-colors hover:border-marino-600 hover:text-marino-600"
+                >
+                  {s.nombre}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    relacionadas.length > 0 && (
+      <section class="contenedor py-12">
+        <h2 class="text-xl font-bold">Otras categorías de la línea {categoria.linea}</h2>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {relacionadas.map((c) => (
+            <li>
+              <a
+                href={`/${c.slug}`}
+                class="block rounded-lg border border-marino-100 px-4 py-3 text-sm font-medium text-marino-700 transition-colors hover:border-marino-600 hover:text-marino-600"
+              >
+                {c.h1}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <CTABloque contexto={categoria.h1} />
+</Base>

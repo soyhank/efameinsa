@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import Migas from '../Migas.astro';
+import TarjetaProducto from '../TarjetaProducto.astro';
+import FormularioCotizacion from '../FormularioCotizacion.astro';
+import { buscarSector } from '../../data/sectores';
+import { buscarCategoria, productosDe } from '../../data/catalogo';
+import { SITE_URL } from '../../data/sitio';
+
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+
+const sector = buscarSector(slug)!;
+
+const bloques = sector.categorias
+  .map((c) => ({ categoria: buscarCategoria(c), productos: productosDe(c).slice(0, 4) }))
+  .filter((b) => b.categoria && b.productos.length > 0);
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: sector.titulo,
+    description: sector.description,
+    url: `${SITE_URL}/${slug}`,
+    areaServed: { '@type': 'Country', name: 'Perú' },
+    provider: { '@id': `${SITE_URL}/#organizacion` },
+  },
+];
+---
+
+<Base
+  title={sector.title}
+  description={sector.description}
+  ruta={`/${slug}`}
+  schema={schema}
+  contextoWhatsApp={`lavandería para ${sector.nombre.toLowerCase()}`}
+>
+  <Migas items={[{ nombre: 'Sectores', ruta: '/sectores' }, { nombre: sector.nombre }]} />
+
+  <header class="bg-marino-800 text-white">
+    <div class="contenedor py-14 sm:py-20">
+      <p class="mb-3 text-xs font-bold uppercase tracking-wider text-marino-300">Sector · {sector.nombre}</p>
+      <h1 class="max-w-3xl text-3xl font-bold text-white sm:text-4xl lg:text-5xl">{sector.titulo}</h1>
+      <p class="mt-5 max-w-3xl text-lg leading-relaxed text-marino-100">{sector.entradilla}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#cotizar" class="rounded-lg bg-coral-500 px-6 py-3 font-semibold text-white hover:bg-coral-600">
+          Solicitar asesoría
+        </a>
+        <a href="/servicios/asesoria-en-proyectos-de-lavanderia" class="rounded-lg border border-marino-400 px-6 py-3 font-semibold text-white hover:bg-marino-700">
+          Ver proyectos llave en mano
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="contenedor py-14">
+    <div class="mx-auto max-w-3xl">
+      <p class="rounded-card border-l-4 border-coral-500 bg-coral-500/5 p-5 text-lg font-medium text-marino-800">
+        {sector.dolor}
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        sector.argumentos.map((a, i) => (
+          <article class="rounded-card border border-marino-100 p-6">
+            <span class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-marino-100 text-sm font-bold text-marino-700">
+              {i + 1}
+            </span>
+            <h2 class="text-lg font-semibold">{a.titulo}</h2>
+            <p class="prosa mt-2 text-sm">{a.texto}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    bloques.map(({ categoria, productos }) => (
+      <section class="border-t border-marino-100 py-12">
+        <div class="contenedor">
+          <div class="flex flex-wrap items-baseline justify-between gap-3">
+            <h2 class="text-2xl font-bold">{categoria!.h1}</h2>
+            <a href={`/${categoria!.slug}`} class="text-sm font-semibold text-marino-600 hover:underline">
+              Ver todos los modelos →
+            </a>
+          </div>
+          <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {productos.map((p) => (
+              <TarjetaProducto producto={p} />
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section id="cotizar" class="scroll-mt-32 bg-marino-50 py-14">
+    <div class="contenedor mx-auto max-w-3xl">
+      <FormularioCotizacion
+        contexto={`Sector ${sector.nombre}`}
+        titulo={`Cuéntenos su proyecto de ${sector.nombre.toLowerCase()}`}
+      />
+    </div>
+  </section>
+</Base>

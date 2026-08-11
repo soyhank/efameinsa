@@ -1,0 +1,256 @@
+---
+import Base from '../../layouts/Base.astro';
+import Migas from '../Migas.astro';
+import TarjetaProducto from '../TarjetaProducto.astro';
+import FormularioCotizacion from '../FormularioCotizacion.astro';
+import { buscarProducto, buscarCategoria, productosDe, capacidadKg, slugMarca } from '../../data/catalogo';
+import { SITE_URL, EMPRESA, enlaceWhatsApp } from '../../data/sitio';
+
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+
+const producto = buscarProducto(slug)!;
+const categoria = buscarCategoria(producto.categoria);
+const kg = capacidadKg(producto);
+
+// Relacionados: misma categoría, capacidades vecinas — es lo que el comprador compara
+const hermanos = productosDe(producto.categoria).filter((p) => p.slug !== slug);
+const relacionados = kg
+  ? [...hermanos].sort((a, b) => Math.abs((capacidadKg(a) ?? 0) - kg) - Math.abs((capacidadKg(b) ?? 0) - kg)).slice(0, 4)
+  : hermanos.slice(0, 4);
+
+// Se ocultan las filas de la tabla que sólo repiten el nombre comercial
+const specsUtiles = producto.specs.filter((s) => !/nombre (corto|para lista)|descripci[óo]n corta/i.test(s.k));
+
+const imagenes = [producto.imagenLocal, ...producto.galeriaLocal].filter((x): x is string => Boolean(x));
+
+const titulo = producto.title || producto.nombre;
+const descripcion =
+  producto.description ||
+  `${producto.nombre}${producto.marca ? ` marca ${producto.marca}` : ''}. Cotice en Efameinsa, Lima, Perú.`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: producto.nombre,
+    description: descripcion,
+    sku: producto.modelo || producto.slug,
+    ...(producto.modelo ? { model: producto.modelo } : {}),
+    ...(producto.marca ? { brand: { '@type': 'Brand', name: producto.marca } } : {}),
+    ...(producto.imagenLocal ? { image: new URL(producto.imagenLocal, SITE_URL).href } : {}),
+    url: `${SITE_URL}/${slug}`,
+    category: categoria?.h1,
+    ...(specsUtiles.length
+      ? {
+          additionalProperty: specsUtiles.map((s) => ({
+            '@type': 'PropertyValue',
+            name: s.k,
+            value: s.v,
+          })),
+        }
+      : {}),
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'PEN',
+      // Venta B2B: el precio se define por proyecto, no se publica
+      priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'PEN' },
+      seller: { '@type': 'Organization', name: EMPRESA.nombre, url: SITE_URL },
+      url: `${SITE_URL}/${slug}`,
+    },
+  },
+];
+---
+
+<Base
+  title={`${titulo} | ${EMPRESA.nombreCorto}`}
+  description={descripcion}
+  ruta={`/${slug}`}
+  imagen={producto.imagenLocal ?? undefined}
+  tipo="product"
+  schema={schema}
+  contextoWhatsApp={producto.nombre}
+>
+  <Migas
+    items={[
+      { nombre: 'Equipos de lavandería', ruta: '/equipos-de-lavanderia' },
+      ...(categoria ? [{ nombre: categoria.h1, ruta: `/${categoria.slug}` }] : []),
+      { nombre: producto.nombre },
+    ]}
+  />
+
+  <div class="contenedor py-10">
+    <div class="grid gap-10 lg:grid-cols-2">
+      <!-- Galería -->
+      <div>
+        {
+          imagenes.length > 0 ? (
+            <>
+              <div class="overflow-hidden rounded-card border border-marino-100 bg-marino-50">
+                <img
+                  id="imagen-principal"
+                  src={imagenes[0]}
+                  alt={producto.nombre}
+                  width="700"
+                  height="646"
+                  fetchpriority="high"
+                  decoding="async"
+                  class="aspect-square w-full object-contain p-6"
+                />
+              </div>
+              {imagenes.length > 1 && (
+                <div class="mt-3 grid grid-cols-5 gap-2">
+                  {imagenes.slice(0, 10).map((img, i) => (
+                    <button
+                      type="button"
+                      data-imagen={img}
+                      class="miniatura overflow-hidden rounded-lg border border-marino-100 bg-marino-50 p-1 transition-colors hover:border-marino-600"
+                      aria-label={`Ver imagen ${i + 1} de ${producto.nombre}`}
+                    >
+                      <img src={img} alt="" width="120" height="120" loading="lazy" decoding="async" class="aspect-square w-full object-contain" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <div class="flex aspect-square items-center justify-center rounded-card border border-marino-100 bg-marino-50 text-marino-300">
+              Imagen no disponible
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Datos y conversión -->
+      <div>
+        <div class="mb-3 flex flex-wrap items-center gap-2">
+          {
+            producto.marca && (
+              <a
+                href={`/marcas/${slugMarca(producto.marca)}`}
+                class="rounded bg-marino-100 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-marino-700 hover:bg-marino-200"
+              >
+                {producto.marca}
+              </a>
+            )
+          }
+          {producto.modelo && <span class="text-xs font-medium text-marino-500">Modelo {producto.modelo}</span>}
+        </div>
+
+        <h1 class="text-3xl font-bold sm:text-4xl">{producto.nombre}</h1>
+
+        {producto.descripcionLarga && <p class="prosa mt-4 text-lg">{producto.descripcionLarga}</p>}
+
+        {
+          specsUtiles.length > 0 && (
+            <div class="mt-8">
+              <h2 class="mb-3 text-sm font-bold uppercase tracking-wider text-marino-500">Especificaciones</h2>
+              <dl class="divide-y divide-marino-100 rounded-card border border-marino-100">
+                {specsUtiles.map((s) => (
+                  <div class="grid grid-cols-[auto_1fr] gap-4 px-4 py-3 text-sm">
+                    <dt class="font-medium text-marino-600">{s.k}</dt>
+                    <dd class="text-right font-semibold text-marino-800">{s.v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          )
+        }
+
+        <div class="mt-8 rounded-card border-2 border-coral-500/30 bg-coral-500/5 p-5">
+          <p class="font-semibold text-marino-800">Precio según proyecto</p>
+          <p class="mt-1 text-sm text-marino-600">
+            Cotizamos por configuración: capacidad, tipo de calentamiento, instalación y puesta en marcha. Le respondemos
+            dentro del día hábil.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href="#cotizar" class="rounded-lg bg-coral-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-coral-600">
+              Solicitar cotización
+            </a>
+            <a
+              href={enlaceWhatsApp(producto.nombre)}
+              target="_blank"
+              rel="noopener"
+              class="rounded-lg bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white hover:brightness-95"
+            >
+              WhatsApp
+            </a>
+            <a
+              href={`tel:+51${EMPRESA.telefonos[0].replace(/\D/g, '')}`}
+              class="rounded-lg border border-marino-300 px-5 py-2.5 text-sm font-semibold text-marino-700 hover:bg-white"
+            >
+              {EMPRESA.telefonos[0]}
+            </a>
+          </div>
+        </div>
+
+        <ul class="mt-6 space-y-2 text-sm text-marino-600">
+          <li>✔ Servicio técnico propio y repuestos en Lima</li>
+          <li>✔ Instalación y puesta en marcha en Lima y provincias</li>
+          <li>✔ Respaldo de {EMPRESA.certificaciones.join(' y ')}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {
+    producto.caracteristicas.length > 0 && (
+      <section class="border-y border-marino-100 bg-marino-50 py-14">
+        <div class="contenedor">
+          <h2 class="text-2xl font-bold">Características</h2>
+          <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {producto.caracteristicas.map((c) => (
+              <article>
+                {c.imagenLocal && (
+                  <img
+                    src={c.imagenLocal}
+                    alt=""
+                    width="900"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                    class="mb-4 aspect-[3/2] w-full rounded-lg border border-marino-100 bg-white object-contain p-2"
+                  />
+                )}
+                {c.titulo && <h3 class="text-base font-semibold">{c.titulo}</h3>}
+                {c.texto && <p class="prosa mt-2 text-sm">{c.texto}</p>}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section id="cotizar" class="contenedor scroll-mt-32 py-14">
+    <div class="mx-auto max-w-3xl">
+      <FormularioCotizacion contexto={producto.nombre} titulo={`Cotizar ${producto.nombre}`} />
+    </div>
+  </section>
+
+  {
+    relacionados.length > 0 && (
+      <section class="contenedor pb-16">
+        <h2 class="text-2xl font-bold">Modelos comparables</h2>
+        <p class="prosa mt-2">Misma línea, capacidades cercanas.</p>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {relacionados.map((p) => <TarjetaProducto producto={p} />)}
+        </div>
+      </section>
+    )
+  }
+</Base>
+
+<script>
+  // Cambio de imagen principal desde las miniaturas
+  const principal = document.getElementById('imagen-principal') as HTMLImageElement | null;
+  document.querySelectorAll<HTMLButtonElement>('.miniatura').forEach((b) => {
+    b.addEventListener('click', () => {
+      const src = b.dataset.imagen;
+      if (principal && src) principal.src = src;
+    });
+  });
+</script>

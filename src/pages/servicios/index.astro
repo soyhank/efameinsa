@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+import Migas from '../../components/Migas.astro';
+import CTABloque from '../../components/CTABloque.astro';
+import { servicios } from '../../data/servicios';
+
+const otros = [
+  {
+    ruta: '/soporte-tecnico',
+    nombre: 'Soporte técnico y repuestos',
+    texto: 'Mantenimiento preventivo y correctivo con técnicos propios, repuestos originales y atención en provincias.',
+  },
+  {
+    ruta: '/equipos-autoclaves',
+    nombre: 'Equipos autoclaves',
+    texto: 'Esterilización para el sector salud, con el mismo respaldo técnico que la lavandería.',
+  },
+];
+---
+
+<Base
+  title="Servicios: Proyectos, Asesoría y Soporte Técnico de Lavandería | Efameinsa"
+  description="Servicios de Efameinsa: diseño de proyectos de lavandería industrial, asesoría para negocios de lavandería, multi-housing y soporte técnico con repuestos en Perú."
+  ruta="/servicios"
+>
+  <Migas items={[{ nombre: 'Servicios' }]} />
+
+  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+    <div class="contenedor py-12 sm:py-16">
+      <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Servicios</h1>
+      <p class="prosa mt-4 max-w-3xl text-lg">
+        Vender la máquina es la parte fácil. Lo que sostiene una lavandería es el dimensionado previo y el servicio
+        técnico posterior.
+      </p>
+    </div>
+  </header>
+
+  <div class="contenedor py-12">
+    <ul class="grid gap-6 lg:grid-cols-3">
+      {
+        servicios.map((s) => (
+          <li>
+            <a
+              href={s.ruta}
+              class="flex h-full flex-col rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600 hover:bg-marino-50"
+            >
+              <h2 class="text-xl font-semibold">{s.nombre}</h2>
+              <p class="prosa mt-3 text-sm">{s.entradilla}</p>
+              <span class="mt-auto pt-5 text-sm font-semibold text-marino-600">Ver detalle →</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <ul class="mt-6 grid gap-6 sm:grid-cols-2">
+      {
+        otros.map((o) => (
+          <li>
+            <a
+              href={o.ruta}
+              class="flex h-full flex-col rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600 hover:bg-marino-50"
+            >
+              <h2 class="text-xl font-semibold">{o.nombre}</h2>
+              <p class="prosa mt-3 text-sm">{o.texto}</p>
+              <span class="mt-auto pt-5 text-sm font-semibold text-marino-600">Ver detalle →</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <CTABloque />
+</Base>

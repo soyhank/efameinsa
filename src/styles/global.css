@@ -1,0 +1,125 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Paleta heredada de la identidad actual de Efameinsa */
+  --color-marino-50: #f2f7fa;
+  --color-marino-100: #e3eef4;
+  --color-marino-200: #c2dbe8;
+  --color-marino-300: #8fc0d6;
+  --color-marino-400: #67b0d6;
+  --color-marino-500: #3d8cb8;
+  --color-marino-600: #1a6097;
+  --color-marino-700: #174a6e;
+  --color-marino-800: #143546;
+  --color-marino-900: #0e2532;
+  --color-marino-950: #081821;
+
+  --color-coral-400: #f89b85;
+  --color-coral-500: #f6846a;
+  --color-coral-600: #e35f42;
+  --color-coral-700: #c04a30;
+
+  --font-sans: 'Inter var', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --radius-card: 0.75rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-marino-900 font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-marino-800 font-semibold tracking-tight text-balance;
+  }
+
+  /* El foco visible es el único indicador de teclado en un sitio sin estados hover */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-marino-600;
+  }
+}
+
+@layer components {
+  .contenedor {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .prosa {
+    @apply text-marino-700 leading-relaxed;
+  }
+
+  .prosa p + p {
+    @apply mt-4;
+  }
+
+  /* Tipografía de los artículos: el HTML lo genera Markdown, por eso se estiliza por descendencia */
+  .contenido-blog {
+    @apply leading-relaxed text-marino-700;
+  }
+
+  .contenido-blog > * + * {
+    @apply mt-5;
+  }
+
+  .contenido-blog h2 {
+    @apply mt-10 text-2xl font-bold;
+  }
+
+  .contenido-blog h3 {
+    @apply mt-8 text-xl font-semibold;
+  }
+
+  .contenido-blog ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+
+  .contenido-blog ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+
+  .contenido-blog a {
+    @apply font-semibold text-marino-600 underline underline-offset-2;
+  }
+
+  .contenido-blog strong {
+    @apply font-semibold text-marino-800;
+  }
+
+  .contenido-blog blockquote {
+    @apply border-l-4 border-coral-500 bg-coral-500/5 px-5 py-4 text-lg font-medium text-marino-800;
+  }
+
+  .contenido-blog table {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .contenido-blog th {
+    @apply border border-marino-200 bg-marino-50 px-4 py-2 text-left font-semibold text-marino-800;
+  }
+
+  .contenido-blog td {
+    @apply border border-marino-200 px-4 py-2;
+  }
+}
+
+/* Respeta a quien pide menos animación */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

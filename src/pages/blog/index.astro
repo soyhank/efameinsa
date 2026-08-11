@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import Migas from '../../components/Migas.astro';
+import CTABloque from '../../components/CTABloque.astro';
+import { getCollection } from 'astro:content';
+
+const articulos = (await getCollection('blog')).sort((a, b) => b.data.fecha.getTime() - a.data.fecha.getTime());
+
+const formato = new Intl.DateTimeFormat('es-PE', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Base
+  title="Recursos y Guías de Lavandería Industrial | Efameinsa"
+  description="Guías técnicas sobre dimensionado de equipos, operación, mantenimiento y rentabilidad de lavanderías industriales en Perú, escritas por nuestro equipo técnico."
+  ruta="/blog"
+>
+  <Migas items={[{ nombre: 'Recursos' }]} />
+
+  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+    <div class="contenedor py-12 sm:py-16">
+      <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Recursos técnicos</h1>
+      <p class="prosa mt-4 max-w-3xl text-lg">
+        Lo que hemos aprendido montando lavanderías: cómo dimensionar, qué observa una auditoría y dónde se va realmente
+        el dinero de la operación.
+      </p>
+    </div>
+  </header>
+
+  <div class="contenedor py-12">
+    {
+      articulos.length === 0 ? (
+        <p class="prosa">Pronto publicaremos las primeras guías.</p>
+      ) : (
+        <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {articulos.map((a) => (
+            <li>
+              <article class="flex h-full flex-col rounded-card border border-marino-100 p-6 transition-shadow hover:shadow-lg">
+                <p class="text-xs font-bold uppercase tracking-wider text-coral-600">{a.data.categoria}</p>
+                <h2 class="mt-2 text-lg font-semibold leading-snug">
+                  <a href={`/blog/${a.id}`} class="hover:text-marino-600">
+                    {a.data.titulo}
+                  </a>
+                </h2>
+                <p class="prosa mt-3 text-sm">{a.data.descripcion}</p>
+                <p class="mt-auto pt-5 text-xs text-marino-500">
+                  <time datetime={a.data.fecha.toISOString()}>{formato.format(a.data.fecha)}</time>
+                </p>
+              </article>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+
+  <CTABloque />
+</Base>

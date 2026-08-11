@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import Migas from '../components/Migas.astro';
+import FormularioCotizacion from '../components/FormularioCotizacion.astro';
+import { EMPRESA } from '../data/sitio';
+
+const pasos = [
+  { titulo: 'Nos cuenta qué necesita', texto: 'Kilos de ropa al día, tipo de prenda y espacio disponible. Con eso ya podemos trabajar.' },
+  { titulo: 'Dimensionamos el equipo', texto: 'Proponemos la combinación de lavado, secado y planchado que cubre su operación sin sobredimensionar.' },
+  { titulo: 'Recibe la propuesta', texto: 'Cotización con equipos, instalación, puesta en marcha y estimación de consumo de servicios.' },
+];
+---
+
+<Base
+  title="Solicitar Cotización de Equipos de Lavandería Industrial | Efameinsa"
+  description="Solicite una cotización de equipos de lavandería industrial o comercial en Perú. Le responde un asesor técnico dentro del día hábil."
+  ruta="/cotizar"
+>
+  <Migas items={[{ nombre: 'Solicitar cotización' }]} />
+
+  <div class="contenedor py-12">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
+      <div>
+        <h1 class="text-3xl font-bold sm:text-4xl">Solicitar cotización</h1>
+        <p class="prosa mt-4 text-lg">
+          No vendemos por catálogo: dimensionamos. Cuéntenos su operación y le proponemos la configuración que
+          corresponde, con el costo de operar incluido en el análisis.
+        </p>
+
+        <ol class="mt-10 space-y-6">
+          {
+            pasos.map((p, i) => (
+              <li class="flex gap-4">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-marino-800 text-sm font-bold text-white">
+                  {i + 1}
+                </span>
+                <div>
+                  <h2 class="font-semibold text-marino-800">{p.titulo}</h2>
+                  <p class="prosa mt-1 text-sm">{p.texto}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="mt-10 rounded-card bg-marino-50 p-6">
+          <h2 class="font-semibold text-marino-800">¿Prefiere hablar ahora?</h2>
+          <p class="mt-2 text-sm text-marino-600">{EMPRESA.horario}</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a
+              href={`tel:+51${EMPRESA.telefonos[0].replace(/\D/g, '')}`}
+              class="rounded-lg bg-marino-800 px-5 py-2.5 text-sm font-semibold text-white hover:bg-marino-700"
+            >
+              {EMPRESA.telefonos[0]}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <FormularioCotizacion titulo="Cuéntenos su proyecto" contexto="Página de cotización" />
+    </div>
+  </div>
+</Base>

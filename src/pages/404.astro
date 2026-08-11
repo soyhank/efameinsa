@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import { lineas } from '../data/catalogo';
+---
+
+<Base
+  title="Página no encontrada | Efameinsa"
+  description="La página que busca no existe o cambió de dirección."
+  ruta="/404"
+  noindex
+>
+  <div class="contenedor py-20">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-6xl font-bold text-marino-200">404</p>
+      <h1 class="mt-4 text-3xl font-bold">No encontramos esta página</h1>
+      <p class="prosa mt-4">
+        Es posible que la dirección haya cambiado. Puede buscar el equipo que necesita desde el catálogo.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/equipos-de-lavanderia" class="rounded-lg bg-coral-500 px-6 py-3 font-semibold text-white hover:bg-coral-600">
+          Ver catálogo
+        </a>
+        <a href="/contactenos" class="rounded-lg border border-marino-300 px-6 py-3 font-semibold text-marino-700 hover:bg-marino-50">
+          Contactar
+        </a>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-4xl">
+      <h2 class="text-center text-sm font-bold uppercase tracking-wider text-marino-500">Categorías principales</h2>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          [...lineas.industrial, ...lineas.comercial].slice(0, 12).map((c) => (
+            <li>
+              <a
+                href={`/${c.slug}`}
+                class="block rounded-lg border border-marino-100 px-4 py-3 text-sm font-medium text-marino-700 hover:border-marino-600 hover:text-marino-600"
+              >
+                {c.h1}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</Base>

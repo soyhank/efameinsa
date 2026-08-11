@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { EMPRESA, enlaceWhatsApp } from '../data/sitio';
+---
+
+<Base
+  title="Solicitud enviada | Efameinsa"
+  description="Hemos recibido su solicitud de cotización."
+  ruta="/gracias"
+  noindex
+>
+  <div class="contenedor py-20 text-center">
+    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-marino-100 text-3xl text-marino-700" aria-hidden="true">
+      ✓
+    </div>
+    <h1 class="mt-6 text-3xl font-bold sm:text-4xl">Recibimos su solicitud</h1>
+    <p class="prosa mx-auto mt-4 max-w-xl text-lg">
+      Un asesor técnico revisará su caso y le contactará dentro del día hábil. Si necesita una respuesta inmediata,
+      escríbanos por WhatsApp o llámenos.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a
+        href={enlaceWhatsApp()}
+        target="_blank"
+        rel="noopener"
+        class="rounded-lg bg-[#25D366] px-6 py-3 font-semibold text-white hover:brightness-95"
+      >
+        Escribir por WhatsApp
+      </a>
+      <a
+        href={`tel:+51${EMPRESA.telefonos[0].replace(/\D/g, '')}`}
+        class="rounded-lg border border-marino-300 px-6 py-3 font-semibold text-marino-700 hover:bg-marino-50"
+      >
+        {EMPRESA.telefonos[0]}
+      </a>
+    </div>
+    <p class="mt-10">
+      <a href="/equipos-de-lavanderia" class="text-sm font-semibold text-marino-600 hover:underline">
+        Seguir viendo el catálogo →
+      </a>
+    </p>
+  </div>
+</Base>

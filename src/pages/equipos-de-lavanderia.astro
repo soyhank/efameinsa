@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import Migas from '../components/Migas.astro';
+import CTABloque from '../components/CTABloque.astro';
+import { lineas, productosDe, productos, capacidadKg } from '../data/catalogo';
+import { SITE_URL } from '../data/sitio';
+
+const bloques = [
+  { titulo: 'Línea industrial', descripcion: 'Equipos de alta carga para operación continua: hoteles, hospitales, minería, textil y agroindustria.', categorias: lineas.industrial },
+  { titulo: 'Línea comercial', descripcion: 'Equipos para negocios de lavandería, autoservicio y edificios multifamiliares.', categorias: lineas.comercial },
+];
+
+const resumen = (slug: string) => {
+  const items = productosDe(slug);
+  const kgs = items.map(capacidadKg).filter((k): k is number => k !== null);
+  return {
+    total: items.length,
+    rango: kgs.length ? `${Math.min(...kgs)} – ${Math.max(...kgs)} kg` : null,
+    portada: items.find((p) => p.imagenLocal)?.imagenLocal ?? null,
+  };
+};
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Catálogo de equipos de lavandería',
+    url: `${SITE_URL}/equipos-de-lavanderia`,
+  },
+];
+---
+
+<Base
+  title="Catálogo de Equipos de Lavandería Industrial y Comercial | Efameinsa"
+  description="Catálogo completo de equipos de lavandería en Perú: lavadoras y secadoras industriales, calandrias, prensas, calderas, centrífugas e insumos. Línea industrial y comercial."
+  ruta="/equipos-de-lavanderia"
+  schema={schema}
+>
+  <Migas items={[{ nombre: 'Equipos de lavandería' }]} />
+
+  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+    <div class="contenedor py-12 sm:py-16">
+      <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Catálogo de equipos de lavandería</h1>
+      <p class="prosa mt-4 max-w-3xl text-lg">
+        {productos.length} modelos organizados en {lineas.industrial.length + lineas.comercial.length} categorías. La
+        línea industrial cubre operación continua y alta carga; la comercial, negocios de lavandería y espacios
+        reducidos.
+      </p>
+    </div>
+  </header>
+
+  {
+    bloques.map((b) => (
+      <section class="contenedor py-12">
+        <h2 class="text-2xl font-bold">{b.titulo}</h2>
+        <p class="prosa mt-2 max-w-2xl">{b.descripcion}</p>
+        <ul class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {b.categorias.map((c) => {
+            const r = resumen(c.slug);
+            return (
+              <li>
+                <a
+                  href={`/${c.slug}`}
+                  class="flex h-full gap-4 rounded-card border border-marino-100 p-4 transition-colors hover:border-marino-600 hover:bg-marino-50"
+                >
+                  {r.portada && (
+                    <img
+                      src={r.portada}
+                      alt=""
+                      width="700"
+                      height="646"
+                      loading="lazy"
+                      decoding="async"
+                      class="h-20 w-20 shrink-0 rounded object-contain"
+                    />
+                  )}
+                  <div>
+                    <h3 class="text-base font-semibold text-marino-800">{c.h1}</h3>
+                    <p class="mt-1 text-xs text-marino-500">
+                      {r.total} modelos{r.rango ? ` · ${r.rango}` : ''}
+                    </p>
+                  </div>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ))
+  }
+
+  <CTABloque />
+</Base>

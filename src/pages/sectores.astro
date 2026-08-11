@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import Migas from '../components/Migas.astro';
+import CTABloque from '../components/CTABloque.astro';
+import { sectores } from '../data/sectores';
+---
+
+<Base
+  title="Soluciones de Lavandería por Sector | Hotelería, Salud, Minería | Efameinsa"
+  description="Equipos de lavandería industrial según su rubro: hotelería, clínicas, minería, textil, agroindustria, negocios de lavandería y autoservicio en Perú."
+  ruta="/sectores"
+>
+  <Migas items={[{ nombre: 'Sectores' }]} />
+
+  <header class="border-b border-marino-100 bg-gradient-to-b from-marino-50 to-white">
+    <div class="contenedor py-12 sm:py-16">
+      <h1 class="max-w-3xl text-3xl font-bold sm:text-4xl">Soluciones por sector</h1>
+      <p class="prosa mt-4 max-w-3xl text-lg">
+        Un hotel, una clínica y un campamento minero lavan cosas distintas y necesitan equipos distintos. Elija su rubro
+        y vea la configuración que recomendamos.
+      </p>
+    </div>
+  </header>
+
+  <div class="contenedor py-12">
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        sectores.map((s) => (
+          <li>
+            <a
+              href={`/${s.slug}`}
+              class="flex h-full flex-col rounded-card border border-marino-100 p-6 transition-colors hover:border-marino-600 hover:bg-marino-50"
+            >
+              <h2 class="text-xl font-semibold">{s.nombre}</h2>
+              <p class="mt-1 text-sm font-medium text-marino-500">{s.titulo}</p>
+              <p class="prosa mt-3 text-sm">{s.entradilla}</p>
+              <span class="mt-auto pt-5 text-sm font-semibold text-marino-600">Ver equipos →</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <CTABloque />
+</Base>
