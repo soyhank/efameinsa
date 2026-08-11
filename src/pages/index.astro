@@ -139,6 +139,7 @@ const schema = [
             >
               {s.imagen && (
                 <div class="overflow-hidden border-b border-gris-100 bg-gris-50">
+                  {/* Recortes de producto van contenidos con aire; fotos de ambiente llenan el marco */}
                   <img
                     src={s.imagen}
                     alt={`Equipos para ${s.nombre.toLowerCase()}`}
@@ -146,7 +147,10 @@ const schema = [
                     height="300"
                     loading="lazy"
                     decoding="async"
-                    class="mx-auto aspect-[4/3] w-full object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-110"
+                    class:list={[
+                      'mx-auto aspect-[4/3] w-full transition-transform duration-500 ease-out group-hover:scale-110',
+                      s.imagen.startsWith('/img/productos/') ? 'object-contain p-6' : 'object-cover',
+                    ]}
                   />
                 </div>
               )}

@@ -56,7 +56,8 @@ export const sectores: Sector[] = [
   {
     slug: 'maquinas-lavadoras-para-industria-hospitalaria',
     nombre: 'Salud',
-    imagen: '/img/productos/lavadora-con-barrera-sanitaria-lbs50-efamein/principal.webp',
+    /* Foto real del proyecto INEN: operario y secadoras en lavandería hospitalaria */
+    imagen: '/img/proyectos/inen/maquinaria-para-lavanderia-industrial-efameinsa.webp',
     titulo: 'Lavandería hospitalaria y de clínicas',
     title: 'Lavadoras con Barrera Sanitaria para Hospitales y Clínicas | Efameinsa',
     description:
